@@ -1,7 +1,7 @@
 import { ipcMain, app } from 'electron'
 import { insertToDB, handleFromDb } from '@server'
 import { getWinodws } from '../configWindows'
-import getDesktopCapturer from '../modules/desktopCapturer'
+import { getDesktopCapturer, showScreenshotWindow, closeScreenshotWindow } from './screenshot'
 import { ModelWindowKey } from '@shared/dataModelTypes/windows'
 
 export function registerRenderMessageHandlers() {
@@ -35,6 +35,9 @@ export function registerRenderProcessMessageHandlers() {
     ipcMain.handle('process:desktopCapturer', async (_event) => {
         return await getDesktopCapturer()
     })
+    ipcMain.handle('process:screenshot', async (_event, isOpen: boolean) => {
+        isOpen ? showScreenshotWindow() : closeScreenshotWindow()
+    })
 }
   
 export function unregisterRenderProcessMessageHandlers() {
@@ -43,6 +46,7 @@ export function unregisterRenderProcessMessageHandlers() {
     ipcMain.removeHandler('process:minimize')
     ipcMain.removeHandler('process:maximize')
     ipcMain.removeHandler('process:desktopCapturer')
+    ipcMain.removeHandler('process:screenshot')
 }
 
 export function registerRenderCreateWindowMessageHandler() {

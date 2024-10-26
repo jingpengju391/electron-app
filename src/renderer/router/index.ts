@@ -5,13 +5,13 @@ const routes = [
   {
     path: '/',
     name: 'order',
-    component: () => import('../views/workOrderView/Index.vue'),
+    component: () => import('../views/WorkOrderView/Index.vue'),
     meta: { keep: true }
   },
   {
-    path: '/showChart',
-    name: 'showChart',
-    component: () => import('../views/workOrderView/Index.vue'),
+    path: '/shot',
+    name: 'shot',
+    component: () => import('../views/ScreenShot/Index.vue'),
   }
 ];
 

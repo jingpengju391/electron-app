@@ -12,8 +12,8 @@ export type ModelWindowType = {
 
 export type WindowConfig = {
     sign: ModelWindowKey
-    loadURL: string | undefined
-    loadFile: string
+    loadURL?: string
+    loadFile?: string
     isOpenDevTools?: boolean
     callback?: (focusedWindow: BrowserWindow) => Promise<void>
     options: BrowserWindowConstructorOptions

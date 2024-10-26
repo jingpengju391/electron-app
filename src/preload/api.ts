@@ -17,7 +17,8 @@ const api: Api = {
         restore: () => ipcRenderer.invoke('process:restore'),
         minimize: () => ipcRenderer.invoke('process:minimize'),
         maximize: () => ipcRenderer.invoke('process:maximize'),
-        desktopCapturer: () => ipcRenderer.invoke('process:desktopCapturer')
+        desktopCapturer: () => ipcRenderer.invoke('process:desktopCapturer'),
+        screenshot: (isOpen: boolean) => ipcRenderer.invoke('process:screenshot', isOpen)
     }
 }
 

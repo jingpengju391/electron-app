@@ -11,11 +11,7 @@ export async function createWindow({ sign, loadFile, loadURL, options, isOpenDev
     
     // HMR for renderer base on electron-vite cli.
     // Load the remote URL for development or the local html file for production.
-    if (isDev && loadURL) {
-        focusedWindow.loadURL(loadURL)
-    } else {
-        focusedWindow.loadFile(loadFile)
-    }
+    handlerFocusedWindowLoadFile(focusedWindow, loadFile, loadURL)
 
     focusedWindow.once("ready-to-show", () => openDevTools(focusedWindow, isOpenDevTools))
 
@@ -30,4 +26,15 @@ function openDevTools(focusedWindow: BrowserWindow, isOpenDevTools: boolean = fa
     // see https://github.com/electron/electron/issues/41614#issuecomment-2006678760
     (isDev || import.meta.env.MODE === 'test' || isOpenDevTools) &&
     focusedWindow.webContents.openDevTools({ mode: 'right' })
+}
+
+// pass loadFile, loadURL, and isDev all at once. 
+// meanwhile, this means that if no parameters are passed during the call, 
+// the function will not encounter any errors.
+function handlerFocusedWindowLoadFile(focusedWindow: BrowserWindow, loadFile?: string, loadURL?: string){
+    if (isDev) {
+        loadURL? focusedWindow.loadURL(loadURL) : loadFile && focusedWindow.loadFile(loadFile)
+    } else {
+        loadFile? focusedWindow.loadFile(loadFile) : loadURL && focusedWindow.loadURL(loadURL)
+    }
 }

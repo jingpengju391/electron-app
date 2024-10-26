@@ -1,7 +1,7 @@
 import { ModelWindowKey, WindowConfig } from "@shared/dataModelTypes/windows"
 import { join } from 'path'
 import { shell } from 'electron'
-import { getScreenSize } from "../utils"
+import { getScreenSize, isMac } from "../utils"
 import icon from '../../../resources/icon.png?asset'
 
 export function mainWindow(): WindowConfig{
@@ -9,11 +9,12 @@ export function mainWindow(): WindowConfig{
     return {
         sign: ModelWindowKey.mainWindow,
         loadURL: process.env['ELECTRON_RENDERER_URL'],
-        loadFile: join(__dirname, '../../renderer/index.html'),
+        loadFile: join(__dirname, '../renderer/index.html'),
         options: {
             width: width * 0.6,
             height: height * 0.6,
             show: false,
+            frame: isMac,
             autoHideMenuBar: true,
             ...(process.platform === 'linux' ? { icon } : {}),
             webPreferences: {

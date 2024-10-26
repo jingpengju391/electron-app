@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import { process } from '@hooks/api'
 
-const aaaa = async () => {
+const open = async () => {
     const aaa = await process.desktopCapturer()
     console.log(aaa, 777)
+    await process.screenshot(true)
+}
+const close = async () => {
+    await process.screenshot(false)
 }
 </script>
 
 <template>
     <div class="container">
         <div class="container-top">
-            <h3 @click="aaaa">检测图谱上传</h3>
+            <h3 @click="open">检测图谱上传</h3>
             <el-upload class="upload-box" drag>
                 <i-ep-upload-filled />
                 <div class="el-upload__text">
@@ -24,7 +28,7 @@ const aaaa = async () => {
             </el-upload>
         </div>
         <div class="container-btm">
-            <h3>检测图谱上传</h3>
+            <h3 @click="close">检测图谱上传</h3>
             <div class="img-list">
                 <div class="img-list-box">
                     <el-image class="img-list-box-item" src="https://picsum.photos/200/300" fit="cover" />

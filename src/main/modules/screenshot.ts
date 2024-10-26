@@ -1,6 +1,8 @@
 import { desktopCapturer, screen } from 'electron'
+import { getWinodws } from '../configWindows'
+import { ModelWindowKey } from '@shared/dataModelTypes/windows'
 
-export default async function getDesktopCapturer(): Promise<string>{
+export async function getDesktopCapturer(): Promise<string>{
     const primaryDisplay = screen.getPrimaryDisplay()
     const { scaleFactor } = primaryDisplay
     const { width, height } = primaryDisplay.bounds
@@ -18,3 +20,14 @@ export default async function getDesktopCapturer(): Promise<string>{
         return ''
     }
 }
+
+
+export async function showScreenshotWindow(){
+   const shotWindow = getWinodws(ModelWindowKey.shotWindow)
+   shotWindow?.show()
+}
+
+export async function closeScreenshotWindow(){
+    const shotWindow = getWinodws(ModelWindowKey.shotWindow)
+    shotWindow?.hide()
+ }

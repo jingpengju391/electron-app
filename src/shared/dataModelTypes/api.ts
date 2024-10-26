@@ -13,6 +13,7 @@ export type Api = {
         minimize: () => Promise<void>
         maximize: () => Promise<void>
         desktopCapturer: () => Promise<string>
+        screenshot: (isOpen: boolean) => Promise<void>
     }
 }
 
