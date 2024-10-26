@@ -2,7 +2,7 @@ import path from 'path'
 import { app } from 'electron'
 import DbService from '@service/db'
 
-export default async function initDefaultWorkspace(){
+export default async function initDefaultWorkspace() {
     // init db work space
     await initializeDBService()
 
@@ -13,8 +13,8 @@ export default async function initDefaultWorkspace(){
 // client db & create db table
 async function initializeDBService() {
     const isPackaged = app.isPackaged
-    const filePath  = isPackaged ? 
-      path.resolve(import.meta.env.MAIN_VITE_APP_DB_PATH_PACKAGED) : 
-      path.resolve(__dirname, import.meta.env.MAIN_VITE_APP_DB_PATH)
+    const filePath = isPackaged
+        ? path.resolve(import.meta.env.MAIN_VITE_APP_DB_PATH_PACKAGED)
+        : path.resolve(__dirname, import.meta.env.MAIN_VITE_APP_DB_PATH)
     await DbService.initializeDB(filePath)
 }

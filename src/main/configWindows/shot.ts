@@ -1,10 +1,10 @@
-import { ModelWindowKey, WindowConfig } from "@shared/dataModelTypes/windows"
+import { ModelWindowKey, WindowConfig } from '@shared/dataModelTypes/windows'
 import { join } from 'path'
 import { shell } from 'electron'
-import { getScreenSize, isDev } from "../utils"
-import { getWinodws } from "."
+import { getScreenSize, isDev } from '../utils'
+import { getWinodws } from '.'
 
-export function shotWindow(): WindowConfig{
+export function shotWindow(): WindowConfig {
     const { width, height } = getScreenSize()
     const ratio = isDev ? 0.5 : 1
     return {
@@ -19,21 +19,21 @@ export function shotWindow(): WindowConfig{
             frame: false,
             transparent: !isDev,
             webPreferences: {
-              preload: join(__dirname, '../preload/index.js'),
-              sandbox: false
+                preload: join(__dirname, '../preload/index.js'),
+                sandbox: false
             },
             parent: getWinodws(ModelWindowKey.mainWindow)
         },
-        callback: async focusedWindow => {
-            focusedWindow.once("ready-to-show", () => {
+        callback: async (focusedWindow) => {
+            focusedWindow.once('ready-to-show', () => {
                 focusedWindow.setFullScreen(!isDev)
             })
-    
+
             focusedWindow.webContents.setWindowOpenHandler((details) => {
                 shell.openExternal(details.url)
                 return { action: 'deny' }
             })
-    
+
             focusedWindow.on('resize', () => {
                 focusedWindow.webContents.send('window-change-resize')
             })
@@ -41,8 +41,8 @@ export function shotWindow(): WindowConfig{
     }
 }
 
-function getLoadURL(): string{
-    if(isDev){
+function getLoadURL(): string {
+    if (isDev) {
         return `${process.env['ELECTRON_RENDERER_URL']}/#/shot`
     }
     return `file://${join(__dirname, '../renderer/index.html#shot')}`

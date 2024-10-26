@@ -4,8 +4,7 @@ export const enumeration = {
     userSpace: '',
     db: {
         async insertDB() {
-            return await DBClient.getInstance(enumeration.userSpace)('test')
-            .insert({
+            return await DBClient.getInstance(enumeration.userSpace)('test').insert({
                 name: 'name',
                 description: 'description',
                 creator: 'aojiaoshou'
@@ -13,8 +12,8 @@ export const enumeration = {
         },
         async queryDB(id: number) {
             return await DBClient.getInstance(enumeration.userSpace)('test')
-            .where('id', id)
-            .select('*')
+                .where('id', id)
+                .select('*')
         }
     }
 }

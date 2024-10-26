@@ -7,7 +7,7 @@ const api: Api = {
     isDev: process.platform === 'win32',
     isLinux: process.platform === 'linux',
     isWin: process.env.NODE_ENV === 'development',
-    
+
     db: {
         saveDb: () => ipcRenderer.invoke('db:insert'),
         queryDb: (id: number) => ipcRenderer.invoke('db:query', id)

@@ -1,19 +1,19 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { routeBeforeEach, routeAfterEach } from './routerInterceptor'
 
 const routes = [
-  {
-    path: '/',
-    name: 'order',
-    component: () => import('../views/WorkOrderView/Index.vue'),
-    meta: { keep: true }
-  },
-  {
-    path: '/shot',
-    name: 'shot',
-    component: () => import('../views/ScreenShot/Index.vue'),
-  }
-];
+    {
+        path: '/',
+        name: 'order',
+        component: () => import('../views/WorkOrderView/Index.vue'),
+        meta: { keep: true }
+    },
+    {
+        path: '/shot',
+        name: 'shot',
+        component: () => import('../views/ScreenShot/Index.vue')
+    }
+]
 
 const route = createRouter({ history: createWebHashHistory(), routes })
 

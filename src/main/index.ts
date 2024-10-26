@@ -1,10 +1,14 @@
 import { app, BrowserWindow } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 import { createWindow } from './modules'
-import { loadingWindow, mainWindow, shotWindow } from './configWindows'
+import { loadingWindow, mainWindow } from './configWindows'
 import {
-    registerRenderMessageHandlers, unregisterRenderMessageHandlers, registerRenderProcessMessageHandlers, 
-    unregisterRenderProcessMessageHandlers, registerRenderCreateWindowMessageHandler, unregisterRenderCreateWindowMessageHandler
+    registerRenderMessageHandlers,
+    unregisterRenderMessageHandlers,
+    registerRenderProcessMessageHandlers,
+    unregisterRenderProcessMessageHandlers,
+    registerRenderCreateWindowMessageHandler,
+    unregisterRenderCreateWindowMessageHandler
 } from './modules'
 
 // This method will be called when Electron has finished
@@ -29,7 +33,7 @@ app.whenReady().then(async () => {
     app.on('activate', async function () {
         // On macOS it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.
-        BrowserWindow.getAllWindows().length === 0 && await registerAllInitWindows()
+        BrowserWindow.getAllWindows().length === 0 && (await registerAllInitWindows())
     })
 })
 
@@ -44,7 +48,7 @@ app.on('window-all-closed', () => {
     }
 })
 
-async function registerAllInitWindows(){
+async function registerAllInitWindows() {
     await createWindow(loadingWindow())
     await createWindow(mainWindow())
     // await createWindow(shotWindow())

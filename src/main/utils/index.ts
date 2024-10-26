@@ -8,7 +8,7 @@ export const isLinux = process.platform === 'linux'
 
 export const isDev = process.env.NODE_ENV === 'development'
 
-export function getScreenSize(){
+export function getScreenSize() {
     const primaryDisplay = screen.getPrimaryDisplay()
-    return  primaryDisplay.workAreaSize
+    return primaryDisplay.workAreaSize
 }

@@ -8,7 +8,7 @@ export default {
         outDir: dirPath('preload'),
         rollupOptions: {
             output: {
-                manualChunks(id){}
+                // manualChunks(id) {}
             }
         }
     },

@@ -18,7 +18,7 @@ type ConnectionType =
     | 'wifi'
     | 'wimax'
 interface NetworkInformation extends EventTarget {
-  readonly type?: ConnectionType
+    readonly type?: ConnectionType
     readonly effectiveType?: EffectiveConnectionType
     readonly downlinkMax?: Megabit
     readonly downlink?: Megabit
@@ -29,6 +29,6 @@ interface NetworkInformation extends EventTarget {
 
 type NetworkInformationMode = {
     type: EffectiveConnectionType | '无服务'
-    rtt:  Megabit
+    rtt: Megabit
     downlink: Millisecond
 }

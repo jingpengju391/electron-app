@@ -32,14 +32,14 @@ export function registerRenderProcessMessageHandlers() {
         window?.setFullScreen(false)
         window?.restore()
     })
-    ipcMain.handle('process:desktopCapturer', async (_event) => {
+    ipcMain.handle('process:desktopCapturer', async () => {
         return await getDesktopCapturer()
     })
     ipcMain.handle('process:screenshot', async (_event, isOpen: boolean) => {
         isOpen ? showScreenshotWindow() : closeScreenshotWindow()
     })
 }
-  
+
 export function unregisterRenderProcessMessageHandlers() {
     ipcMain.removeHandler('process:close')
     ipcMain.removeHandler('process:restore')
@@ -49,10 +49,6 @@ export function unregisterRenderProcessMessageHandlers() {
     ipcMain.removeHandler('process:screenshot')
 }
 
-export function registerRenderCreateWindowMessageHandler() {
+export function registerRenderCreateWindowMessageHandler() {}
 
-}
-  
-export function unregisterRenderCreateWindowMessageHandler() {
-
-}
+export function unregisterRenderCreateWindowMessageHandler() {}

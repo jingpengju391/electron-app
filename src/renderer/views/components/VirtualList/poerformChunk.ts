@@ -1,5 +1,5 @@
 const chunkSplitor = ((): ((task: (timeLeft: (time: number) => boolean) => void) => void) => {
-    if (!!globalThis.requestIdleCallback) {
+    if (globalThis.requestIdleCallback) {
         return (task: (timeLeft: (time: number) => boolean) => void): void => {
             globalThis.requestIdleCallback((deadline) => {
                 const hasTime = (time: number): boolean => time < deadline.timeRemaining()
@@ -9,14 +9,17 @@ const chunkSplitor = ((): ((task: (timeLeft: (time: number) => boolean) => void)
     } else {
         return (task: (timeLeft: (time: number) => boolean) => void): void => {
             setTimeout(() => {
-                task(time => time < 16)
+                task((time) => time < 16)
             }, 30)
         }
     }
 })()
 
-export default function performChunk(datas: any[] | any, callback: (data: any, index: number) => void): void {
-    datas = Array.isArray(datas)? datas : [datas]
+export default function performChunk(
+    datas: any[] | any,
+    callback: (data: any, index: number) => void
+): void {
+    datas = Array.isArray(datas) ? datas : [datas]
 
     if (datas.length === 0) return
 

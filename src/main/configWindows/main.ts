@@ -1,12 +1,12 @@
-import { ModelWindowKey, WindowConfig } from "@shared/dataModelTypes/windows"
+import { ModelWindowKey, WindowConfig } from '@shared/dataModelTypes/windows'
 import { join } from 'path'
 import { shell } from 'electron'
-import { getScreenSize, isMac } from "../utils"
+import { getScreenSize, isMac } from '../utils'
 import icon from '../../../resources/icon.png?asset'
-import initDefaultWorkspace from "../modules/initDataBeforeCreateWindow"
-import { getWinodws } from "."
+import initDefaultWorkspace from '../modules/initDataBeforeCreateWindow'
+import { getWinodws } from '.'
 
-export function mainWindow(): WindowConfig{
+export function mainWindow(): WindowConfig {
     const { width, height } = getScreenSize()
     return {
         sign: ModelWindowKey.mainWindow,
@@ -20,29 +20,28 @@ export function mainWindow(): WindowConfig{
             autoHideMenuBar: true,
             ...(process.platform === 'linux' ? { icon } : {}),
             webPreferences: {
-              preload: join(__dirname, '../preload/index.js'),
-              sandbox: false
+                preload: join(__dirname, '../preload/index.js'),
+                sandbox: false
             }
         },
-        callback: async focusedWindow => {
-
+        callback: async (focusedWindow) => {
             await initDefaultWorkspace()
 
             focusedWindow.setMinimumSize(800, 600)
 
-            focusedWindow.once("ready-to-show", () => {
+            focusedWindow.once('ready-to-show', () => {
                 const loadingWindow = getWinodws(ModelWindowKey.loadingWindow)
                 loadingWindow?.hide()
                 loadingWindow?.close()
                 focusedWindow.show()
             })
-    
+
             focusedWindow.webContents.setWindowOpenHandler((details) => {
                 shell.openExternal(details.url)
                 return { action: 'deny' }
             })
-    
-            focusedWindow.on('resize', () => {  
+
+            focusedWindow.on('resize', () => {
                 focusedWindow.webContents.send('window-change-resize')
             })
         }

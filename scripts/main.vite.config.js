@@ -8,7 +8,7 @@ export default {
         outDir: dirPath('main'),
         rollupOptions: {
             output: {
-                manualChunks(id){}
+                // manualChunks(id) {}
             },
             external: []
         },

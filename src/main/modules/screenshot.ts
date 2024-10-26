@@ -3,7 +3,7 @@ import { getWinodws, shotWindow } from '../configWindows'
 import { ModelWindowKey } from '@shared/dataModelTypes/windows'
 import { createWindow } from './createWindow'
 
-export async function getDesktopCapturer(): Promise<string>{
+export async function getDesktopCapturer(): Promise<string> {
     const primaryDisplay = screen.getPrimaryDisplay()
     const { scaleFactor } = primaryDisplay
     const { width, height } = primaryDisplay.bounds
@@ -22,13 +22,12 @@ export async function getDesktopCapturer(): Promise<string>{
     }
 }
 
-
-export async function showScreenshotWindow(){
+export async function showScreenshotWindow() {
     await createWindow(shotWindow())
 }
 
-export async function closeScreenshotWindow(){
+export async function closeScreenshotWindow() {
     const shotWindow = getWinodws(ModelWindowKey.shotWindow)
     shotWindow?.hide()
     shotWindow?.close()
- }
+}

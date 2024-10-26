@@ -1,4 +1,4 @@
-import type { BrowserWindow, BrowserWindowConstructorOptions } from "electron"
+import type { BrowserWindow, BrowserWindowConstructorOptions } from 'electron'
 
 export enum ModelWindowKey {
     loadingWindow = 'loadingWindow',
