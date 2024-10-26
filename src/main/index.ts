@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 import { createWindow } from './modules'
-import { mainWindow, shotWindow } from './configWindows'
+import { loadingWindow, mainWindow, shotWindow } from './configWindows'
 import {
     registerRenderMessageHandlers, unregisterRenderMessageHandlers, registerRenderProcessMessageHandlers, 
     unregisterRenderProcessMessageHandlers, registerRenderCreateWindowMessageHandler, unregisterRenderCreateWindowMessageHandler
@@ -24,15 +24,12 @@ app.whenReady().then(async () => {
     // register all IPC handlers
     registerAllRenderMessageHandlers()
 
-    await createWindow(mainWindow())
-    await createWindow(shotWindow())
+    await registerAllInitWindows()
 
     app.on('activate', async function () {
         // On macOS it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.
-        BrowserWindow.getAllWindows().length === 0 && 
-        await createWindow(mainWindow()) && 
-        await createWindow(shotWindow())
+        BrowserWindow.getAllWindows().length === 0 && await registerAllInitWindows()
     })
 })
 
@@ -46,6 +43,12 @@ app.on('window-all-closed', () => {
         app.quit()
     }
 })
+
+async function registerAllInitWindows(){
+    await createWindow(loadingWindow())
+    await createWindow(mainWindow())
+    await createWindow(shotWindow())
+}
 
 // all ipcs register in here when window is open
 // include message, process, create window

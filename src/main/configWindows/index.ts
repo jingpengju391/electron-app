@@ -3,6 +3,7 @@ import { ModelWindowKey } from '@shared/dataModelTypes/windows'
 
 export * from './main'
 export * from './shot'
+export * from './loading'
 
 const windows = new Map<ModelWindowKey, BrowserWindow>()
 

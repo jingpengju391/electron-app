@@ -4,7 +4,7 @@ import { isDev } from '../utils'
 import { WindowConfig } from '@shared/dataModelTypes/windows'
 import { addWinodws } from '../configWindows'
 
-export async function createWindow({ sign, loadFile, loadURL, options, isOpenDevTools, callback }: WindowConfig) {
+export async function createWindow({ sign, loadFile, loadURL, options, isOpenDevTools = true, callback }: WindowConfig) {
     const focusedWindow = new BrowserWindow(options)
 
     callback && await callback(focusedWindow)
@@ -24,7 +24,7 @@ function openDevTools(focusedWindow: BrowserWindow, isOpenDevTools: boolean = fa
     // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
     // code: -32601 about Autofill.enable wasn't found
     // see https://github.com/electron/electron/issues/41614#issuecomment-2006678760
-    (isDev || import.meta.env.MODE === 'test' || isOpenDevTools) &&
+    ((isDev || import.meta.env.MODE === 'test') && isOpenDevTools) &&
     focusedWindow.webContents.openDevTools({ mode: 'right' })
 }
 
