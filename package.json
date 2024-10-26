@@ -67,5 +67,10 @@
     "vite-plugin-svg-icons": "^2.0.1",
     "vue": "^3.5.12",
     "vue-tsc": "^2.0.22"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "sqlite3@5.1.7": "patches/sqlite3@5.1.7.patch"
+    }
   }
 }
