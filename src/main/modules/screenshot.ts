@@ -1,6 +1,7 @@
 import { desktopCapturer, screen } from 'electron'
-import { getWinodws } from '../configWindows'
+import { getWinodws, shotWindow } from '../configWindows'
 import { ModelWindowKey } from '@shared/dataModelTypes/windows'
+import { createWindow } from './createWindow'
 
 export async function getDesktopCapturer(): Promise<string>{
     const primaryDisplay = screen.getPrimaryDisplay()
@@ -23,11 +24,11 @@ export async function getDesktopCapturer(): Promise<string>{
 
 
 export async function showScreenshotWindow(){
-   const shotWindow = getWinodws(ModelWindowKey.shotWindow)
-   shotWindow?.show()
+    await createWindow(shotWindow())
 }
 
 export async function closeScreenshotWindow(){
     const shotWindow = getWinodws(ModelWindowKey.shotWindow)
     shotWindow?.hide()
+    shotWindow?.close()
  }
