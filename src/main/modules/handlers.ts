@@ -1,8 +1,8 @@
 import { ipcMain, app } from 'electron'
 import { insertToDB, handleFromDb } from '@server'
-import { windows } from './config'
-import getDesktopCapturer from './modules/desktopCapturer'
-import { ModelWindowType } from '@shared/dataModelTypes/windows'
+import { getWinodws } from '../configWindows'
+import getDesktopCapturer from '../modules/desktopCapturer'
+import { ModelWindowKey } from '@shared/dataModelTypes/windows'
 
 export function registerRenderMessageHandlers() {
     ipcMain.handle('db:insert', insertToDB)
@@ -16,19 +16,21 @@ export function unregisterRenderMessageHandlers() {
 
 export function registerRenderProcessMessageHandlers() {
     ipcMain.handle('process:close', () => app.quit())
-    ModelWindowType
     ipcMain.handle('process:minimize', () => {
-        windows[ModelWindowType.mainWindow]?.setFullScreen(false)
-        windows[ModelWindowType.mainWindow]?.minimize()
+        const window = getWinodws(ModelWindowKey.mainWindow)
+        window?.setFullScreen(false)
+        window?.minimize()
     })
     ipcMain.handle('process:maximize', () => {
-        windows[ModelWindowType.mainWindow]?.maximize()
-        windows[ModelWindowType.mainWindow]?.setFullScreen(true)
+        const window = getWinodws(ModelWindowKey.mainWindow)
+        window?.maximize()
+        window?.setFullScreen(true)
     })
 
     ipcMain.handle('process:restore', () => {
-        windows[ModelWindowType.mainWindow]?.setFullScreen(false)
-        windows[ModelWindowType.mainWindow]?.restore()
+        const window = getWinodws(ModelWindowKey.mainWindow)
+        window?.setFullScreen(false)
+        window?.restore()
     })
     ipcMain.handle('process:desktopCapturer', async (_event) => {
         return await getDesktopCapturer()

@@ -1,0 +1,33 @@
+
+import { BrowserWindow } from 'electron'
+import { isDev } from '../utils'
+import { WindowConfig } from '@shared/dataModelTypes/windows'
+import { addWinodws } from '../configWindows'
+
+export async function createWindow({ sign, loadFile, loadURL, options, isOpenDevTools, callback }: WindowConfig) {
+    const focusedWindow = new BrowserWindow(options)
+
+    callback && await callback(focusedWindow)
+    
+    // HMR for renderer base on electron-vite cli.
+    // Load the remote URL for development or the local html file for production.
+    if (isDev && loadURL) {
+        focusedWindow.loadURL(loadURL)
+    } else {
+        focusedWindow.loadFile(loadFile)
+    }
+
+    focusedWindow.once("ready-to-show", () => openDevTools(focusedWindow, isOpenDevTools))
+
+    addWinodws(sign, focusedWindow)
+}
+
+function openDevTools(focusedWindow: BrowserWindow, isOpenDevTools: boolean = false) {
+    // Default open or close DevTools by F12 in development
+    // and ignore CommandOrControl + R in production.
+    // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
+    // code: -32601 about Autofill.enable wasn't found
+    // see https://github.com/electron/electron/issues/41614#issuecomment-2006678760
+    (isDev || import.meta.env.MODE === 'test' || isOpenDevTools) &&
+    focusedWindow.webContents.openDevTools({ mode: 'right' })
+}
