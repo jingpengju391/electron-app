@@ -47,9 +47,6 @@ app.on('window-all-closed', () => {
     }
 })
 
-// In this file you can include the rest of your app"s specific main process
-// code. You can also put them in separate files and require them here.
-
 // all ipcs register in here when window is open
 // include message, process, create window
 function registerAllRenderMessageHandlers() {
@@ -65,3 +62,6 @@ function unregisterAllRenderMessageHandlers() {
     unregisterRenderProcessMessageHandlers()
     unregisterRenderCreateWindowMessageHandler()
 }
+
+// In this file you can include the rest of your app"s specific main process
+// code. You can also put them in separate files and require them here.

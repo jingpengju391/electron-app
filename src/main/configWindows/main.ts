@@ -3,6 +3,7 @@ import { join } from 'path'
 import { shell } from 'electron'
 import { getScreenSize, isMac } from "../utils"
 import icon from '../../../resources/icon.png?asset'
+import initDefaultWorkspace from "../modules/initDataBeforeCreateWindow"
 
 export function mainWindow(): WindowConfig{
     const { width, height } = getScreenSize()
@@ -23,7 +24,11 @@ export function mainWindow(): WindowConfig{
             }
         },
         callback: async focusedWindow => {
+
+            await initDefaultWorkspace()
+
             focusedWindow.setMinimumSize(800, 600)
+            
             focusedWindow.once("ready-to-show", () => {
                 focusedWindow.show()
             })
