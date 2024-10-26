@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4651967 */
+  src: url('iconfont.woff2?t=1723544701315') format('woff2'),
+       url('iconfont.woff?t=1723544701315') format('woff'),
+       url('iconfont.ttf?t=1723544701315') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-maximize:before {
+  content: "\e65d";
+}
+
+.icon-restore:before {
+  content: "\e692";
+}
+
+.icon-suoxiao:before {
+  content: "\e628";
+}
+
+.icon-wifi_1:before {
+  content: "\e89d";
+}
+
+.icon-wifi_2:before {
+  content: "\e893";
+}
+
+.icon-wifi_3:before {
+  content: "\e894";
+}
+
+.icon-wifi_4:before {
+  content: "\e895";
+}
+
+.icon-wifi_5:before {
+  content: "\e896";
+}
+
+.icon-mobile_1:before {
+  content: "\e897";
+}
+
+.icon-mobile_2:before {
+  content: "\e898";
+}
+
+.icon-mobile_3:before {
+  content: "\e899";
+}
+
+.icon-mobile_4:before {
+  content: "\e89a";
+}
+
+.icon-mobile_5:before {
+  content: "\e89b";
+}
+
+.icon-wifi_0:before {
+  content: "\e89c";
+}
+
+.icon-mobile_0:before {
+  content: "\e647";
+}
+

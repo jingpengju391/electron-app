@@ -1,0 +1,114 @@
+{
+  "id": "4651967",
+  "name": "5gapp",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1299794",
+      "name": "Maximize-1",
+      "font_class": "maximize",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "1306794",
+      "name": "Maximize-3",
+      "font_class": "restore",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    },
+    {
+      "icon_id": "3278383",
+      "name": "缩小",
+      "font_class": "suoxiao",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "41445222",
+      "name": "wifi",
+      "font_class": "wifi_1",
+      "unicode": "e89d",
+      "unicode_decimal": 59549
+    },
+    {
+      "icon_id": "41437708",
+      "name": "wifi",
+      "font_class": "wifi_2",
+      "unicode": "e893",
+      "unicode_decimal": 59539
+    },
+    {
+      "icon_id": "41437709",
+      "name": "wifi",
+      "font_class": "wifi_3",
+      "unicode": "e894",
+      "unicode_decimal": 59540
+    },
+    {
+      "icon_id": "41437710",
+      "name": "wifi",
+      "font_class": "wifi_4",
+      "unicode": "e895",
+      "unicode_decimal": 59541
+    },
+    {
+      "icon_id": "41437712",
+      "name": "wifi",
+      "font_class": "wifi_5",
+      "unicode": "e896",
+      "unicode_decimal": 59542
+    },
+    {
+      "icon_id": "41437765",
+      "name": "移动网络",
+      "font_class": "mobile_1",
+      "unicode": "e897",
+      "unicode_decimal": 59543
+    },
+    {
+      "icon_id": "41437767",
+      "name": "移动网络",
+      "font_class": "mobile_2",
+      "unicode": "e898",
+      "unicode_decimal": 59544
+    },
+    {
+      "icon_id": "41437769",
+      "name": "移动网络",
+      "font_class": "mobile_3",
+      "unicode": "e899",
+      "unicode_decimal": 59545
+    },
+    {
+      "icon_id": "41437770",
+      "name": "移动网络",
+      "font_class": "mobile_4",
+      "unicode": "e89a",
+      "unicode_decimal": 59546
+    },
+    {
+      "icon_id": "41437782",
+      "name": "移动网络",
+      "font_class": "mobile_5",
+      "unicode": "e89b",
+      "unicode_decimal": 59547
+    },
+    {
+      "icon_id": "41439783",
+      "name": "no_wifi-copy",
+      "font_class": "wifi_0",
+      "unicode": "e89c",
+      "unicode_decimal": 59548
+    },
+    {
+      "icon_id": "38283599",
+      "name": "移动网络-无信号",
+      "font_class": "mobile_0",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    }
+  ]
+}
