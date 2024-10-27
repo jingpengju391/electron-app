@@ -1,6 +1,6 @@
 <script setup lang="ts" name="ImageView">
 import { ref } from 'vue'
-const props = withDefaults(defineProps<{ src: string; fit?: "fill" | "cover" | "contain" | "none" | "scale-down"; loading?: boolean }>(), {
+const props = withDefaults(defineProps<{ src: string; fit?: 'fill' | 'cover' | 'contain' | 'none' | 'scale-down'; loading?: boolean }>(), {
 	src: '',
 	fit: 'cover',
 	loading: true
