@@ -1,8 +1,8 @@
 export enum JsonVirtualContainer {
-    HTMLTag = 'div'
+	HTMLTag = 'div'
 }
 
 export enum ClassNameVarType {
-    container = '--virtual-container',
-    containerItem = '--virtual-container-item'
+	container = '--virtual-container',
+	containerItem = '--virtual-container-item'
 }

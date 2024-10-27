@@ -8,9 +8,9 @@ export * from './loading'
 const windows = new Map<ModelWindowKey, BrowserWindow>()
 
 export function addWinodws(label: ModelWindowKey, value: BrowserWindow) {
-    windows.set(label, value)
+	windows.set(label, value)
 }
 
 export function getWinodws(label: ModelWindowKey): BrowserWindow | undefined {
-    return windows.get(label)
+	return windows.get(label)
 }

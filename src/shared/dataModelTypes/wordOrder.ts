@@ -1,4 +1,4 @@
 export type OrderSelectOption = {
-    label: string
-    value: number
+	label: string
+	value: number
 }

@@ -5,7 +5,7 @@ import preloadConfig from './scripts/preload.vite.config'
 import rendererConfig from './scripts/renderer.vite.config'
 
 export default defineConfig({
-    main: mainConfig,
-    preload: preloadConfig,
-    renderer: rendererConfig
+	main: mainConfig,
+	preload: preloadConfig,
+	renderer: rendererConfig
 })

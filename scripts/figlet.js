@@ -32,11 +32,11 @@ const { name, version, author, description } = require('../package.json')
 const art = figlet.textSync(name.replace('-', '  '), { font: 'Standard', horizontalLayout: 'full' })
 const lines = art.split('\n')
 const centeredArt = lines
-    .map(function (line) {
-        const diff = Math.floor((process.stdout.columns - line.length) / 2)
-        return ' '.repeat(diff > 0 ? diff : 0) + line
-    })
-    .join('\n')
+	.map(function (line) {
+		const diff = Math.floor((process.stdout.columns - line.length) / 2)
+		return ' '.repeat(diff > 0 ? diff : 0) + line
+	})
+	.join('\n')
 
 const f = ['The', name, 'Version', version, 'ESM', 'and', 'CJS', 'Standard']
 
@@ -52,28 +52,28 @@ const descWidth = process.stdout.columns - 4
 const descRegex = new RegExp(`.{1,${descWidth}}`, 'g')
 const descLines = banner.match(descRegex)
 const centeredDesc = descLines
-    .map(function (line) {
-        const lineDiff = Math.floor((process.stdout.columns - line.length) / 2)
-        return ' '.repeat(lineDiff > 0 ? lineDiff : 0) + line
-    })
-    .join('\n')
+	.map(function (line) {
+		const lineDiff = Math.floor((process.stdout.columns - line.length) / 2)
+		return ' '.repeat(lineDiff > 0 ? lineDiff : 0) + line
+	})
+	.join('\n')
 
 console.log(centeredArt + '\n\n' + centeredDesc)
 
 function getCurrentTime() {
-    const now = new Date()
+	const now = new Date()
 
-    const currentYear = now.getFullYear()
+	const currentYear = now.getFullYear()
 
-    const currentMonth = now.getMonth() + 1
+	const currentMonth = now.getMonth() + 1
 
-    const currentDate = now.getDate()
+	const currentDate = now.getDate()
 
-    const currentHour = now.getHours()
+	const currentHour = now.getHours()
 
-    const currentMinute = now.getMinutes()
+	const currentMinute = now.getMinutes()
 
-    const currentSecond = now.getSeconds()
+	const currentSecond = now.getSeconds()
 
-    return `${currentYear}-${currentMonth}-${currentDate} ${currentHour}:${currentMinute}:${currentSecond}`
+	return `${currentYear}-${currentMonth}-${currentDate} ${currentHour}:${currentMinute}:${currentSecond}`
 }
