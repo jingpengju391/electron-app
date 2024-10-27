@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 import { createWindow } from './modules'
-import { loadingWindow, mainWindow } from './configWindows'
+import { loadingWindow, mainWindow, shotWindow } from './configWindows'
 import {
 	registerRenderMessageHandlers,
 	unregisterRenderMessageHandlers,
@@ -51,7 +51,7 @@ app.on('window-all-closed', () => {
 async function registerAllInitWindows() {
 	await createWindow(loadingWindow())
 	await createWindow(mainWindow())
-	// await createWindow(shotWindow())
+	await createWindow(shotWindow())
 }
 
 // all ipcs register in here when window is open
