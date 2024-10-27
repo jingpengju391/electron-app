@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ImageView } from '@components'
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const props = withDefaults(defineProps<{ currentData: any | undefined; index: number; isLast: boolean }>(), {
 	currentData: undefined,
 	index: 0,

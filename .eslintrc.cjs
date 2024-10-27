@@ -13,6 +13,6 @@ module.exports = {
 	rules: {
 		'vue/require-default-prop': 'off',
 		'vue/multi-word-component-names': 'off',
-		indent: ['warn', 'tab']
+		indent: ['off', 'tab']
 	}
 }

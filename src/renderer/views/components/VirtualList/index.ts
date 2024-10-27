@@ -34,14 +34,14 @@ export default defineComponent({
 		const renderView = () =>
 			currentRender.value.length
 				? currentRender.value.map((item, index) =>
-					h(
-						JsonVirtualContainer.HTMLTag,
-						{
-							class: ClassNameVarType.containerItem
-						},
-						this.$slots.default?.({ item, index })
+						h(
+							JsonVirtualContainer.HTMLTag,
+							{
+								class: ClassNameVarType.containerItem
+							},
+							this.$slots.default?.({ item, index })
+						)
 					)
-				)
 				: h(ElEmpty, { description: '暂无数据' })
 
 		return h(
