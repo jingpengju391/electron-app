@@ -10,11 +10,11 @@ const closeLoad = () => (imageLoad.value = false)
 </script>
 
 <template>
-    <el-image v-loading="imageLoad" class="container-image" :src="src" :fit="fit" @load="closeLoad" @error="closeLoad">
-        <template #error>
-            <i-ep-picture class="image-slot" />
-        </template>
-    </el-image>
+	<el-image v-loading="imageLoad" class="container-image" :src="src" :fit="fit" @load="closeLoad" @error="closeLoad">
+		<template #error>
+			<i-ep-picture class="image-slot" />
+		</template>
+	</el-image>
 </template>
 
 <style scoped lang="scss">

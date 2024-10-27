@@ -11,10 +11,10 @@ const cachedComponents = computed(() => {
 </script>
 
 <template>
-    <Header v-if="route.name !== 'shot'" />
-    <router-view v-slot="{ Component }">
-        <keep-alive :include="cachedComponents">
-            <component :is="Component" />
-        </keep-alive>
-    </router-view>
+	<Header v-if="route.name !== 'shot'" />
+	<router-view v-slot="{ Component }">
+		<keep-alive :include="cachedComponents">
+			<component :is="Component" />
+		</keep-alive>
+	</router-view>
 </template>

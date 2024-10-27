@@ -3,9 +3,9 @@ import { ClassNameVarType, JsonVirtualContainer } from './type'
 import { currentRender, initData, onScroll } from './scroll'
 
 type VirtualListProps<T> = {
-    list: T[]
-    width: string | number
-    height: string | number
+	list: T[]
+	width: string | number
+	height: string | number
 }
 
 export default defineComponent({

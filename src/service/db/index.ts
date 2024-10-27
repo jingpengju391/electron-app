@@ -8,11 +8,11 @@ import { resolvePath } from '../util'
 import { singleton } from '@util'
 
 export interface DbServiceClass {
-    userSpace: string
-    migrationFilePath: string
-    seedFilePath: string
-    initializeDB: (workspacePath: string) => Promise<void>
-    backupOldVersionWorkspace: (workspacePath: string) => Promise<void>
+	userSpace: string
+	migrationFilePath: string
+	seedFilePath: string
+	initializeDB: (workspacePath: string) => Promise<void>
+	backupOldVersionWorkspace: (workspacePath: string) => Promise<void>
 }
 
 class DbService implements DbServiceClass {
@@ -36,9 +36,9 @@ class DbService implements DbServiceClass {
 
 			const isAppFirstLoaded = currentVersion === 'none' || currentVersion === '0'
 			isAppFirstLoaded &&
-                (await DBClient.getInstance(this.userSpace).seed.run({
-                	directory: this.seedFilePath
-                }))
+				(await DBClient.getInstance(this.userSpace).seed.run({
+					directory: this.seedFilePath
+				}))
 		} catch (err) {
 			console.log(err)
 		}
