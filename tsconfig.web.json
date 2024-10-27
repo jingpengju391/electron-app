@@ -1,7 +1,6 @@
 {
   "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
   "include": [
-    "src/renderer/env.d.ts",
     "src/renderer/**/*",
     "src/renderer/views/**/*.vue",
     "src/preload/*.d.ts",

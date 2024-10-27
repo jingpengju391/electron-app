@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-;('vue')
 import { useWindowStore } from '@stores'
 import { process } from '@hooks/api'
 import { SvgIcon } from '@components'
