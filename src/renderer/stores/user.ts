@@ -27,8 +27,8 @@ export const useUserStore = defineStore({
 		},
 
 		/**
-		 * Attempt to login a user
-		 */
+         * Attempt to login a user
+         */
 		async login(user: string, password: string) {
 			const userData = await apiLogin(user, password)
 

@@ -22,7 +22,7 @@ const props = defineProps({
 const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
 <template>
-	<svg :style="{ width: size, height: size }" aria-hidden="true">
-		<use :href="symbolId" :fill="color" :width="size" :height="size" />
-	</svg>
+    <svg :style="{ width: size, height: size }" aria-hidden="true">
+        <use :href="symbolId" :fill="color" :width="size" :height="size" />
+    </svg>
 </template>

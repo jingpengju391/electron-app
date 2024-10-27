@@ -3,5 +3,5 @@ import { Layout } from '@components'
 </script>
 
 <template>
-	<Layout />
+    <Layout />
 </template>

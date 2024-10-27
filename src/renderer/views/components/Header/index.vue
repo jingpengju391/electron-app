@@ -37,20 +37,20 @@ navigator.connection?.addEventListener('change', updateWithNetWork)
 </script>
 
 <template>
-	<div class="container">
-		<i-ep-close class="margin close" color="#0d867f" @click="process.close" />
-		<svg-icon class="margin" color="#0d867f" size="38" :name="minimize ? 'maximize' : 'restore'" @click="handleMize" />
-		<svg-icon class="margin minimize" color="#0d867f" name="suoxiao" @click="process.minimize" />
-		<!-- <div class="margin upload">
+    <div class="container">
+        <i-ep-close class="margin close" color="#0d867f" @click="process.close" />
+        <svg-icon class="margin" color="#0d867f" size="38" :name="minimize ? 'maximize' : 'restore'" @click="handleMize" />
+        <svg-icon class="margin minimize" color="#0d867f" name="suoxiao" @click="process.minimize" />
+        <!-- <div class="margin upload">
             <i class="upload-icon"></i>
             <span>14</span>
         </div> -->
-		<!-- <svg-icon class="margin wifi" :name="`wifi_${ getSignalLevel(42) }`"/> -->
-		<div class="margin mobile">
-			<svg-icon :name="`mobile_${signal}`" />
-			<span>{{ netInfo.type.toUpperCase() }}</span>
-		</div>
-	</div>
+        <!-- <svg-icon class="margin wifi" :name="`wifi_${ getSignalLevel(42) }`"/> -->
+        <div class="margin mobile">
+            <svg-icon :name="`mobile_${signal}`" />
+            <span>{{ netInfo.type.toUpperCase() }}</span>
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
