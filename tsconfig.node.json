@@ -2,7 +2,7 @@
   "extends": "@electron-toolkit/tsconfig/tsconfig.node.json",
   "include": ["electron.vite.config.*", "src/main/**/*", "src/service/**/*", "src/shared/**/*", "src/server/**/*", "src/preload/**/*", "src/util/**/*"],
   "compilerOptions": {
-    "types": ["electron-vite/node"],
+    "types": ["electron-vite/node", "vite/client"],
     "moduleResolution": "node",
     "lib": ["dom", "ESNext"],
     "composite": true,
