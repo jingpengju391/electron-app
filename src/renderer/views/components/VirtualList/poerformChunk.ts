@@ -15,10 +15,7 @@ const chunkSplitor = ((): ((task: (timeLeft: (time: number) => boolean) => void)
 	}
 })()
 
-export default function performChunk(
-	datas: any[] | any,
-	callback: (data: any, index: number) => void
-): void {
+export default function performChunk<T>(datas: T[], callback: (data: T, index: number) => void): void {
 	datas = Array.isArray(datas) ? datas : [datas]
 
 	if (datas.length === 0) return

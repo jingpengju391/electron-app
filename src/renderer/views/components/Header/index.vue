@@ -39,19 +39,8 @@ navigator.connection?.addEventListener('change', updateWithNetWork)
 <template>
 	<div class="container">
 		<i-ep-close class="margin close" color="#0d867f" @click="process.close" />
-		<svg-icon
-			class="margin"
-			color="#0d867f"
-			size="38"
-			:name="minimize ? 'maximize' : 'restore'"
-			@click="handleMize"
-		/>
-		<svg-icon
-			class="margin minimize"
-			color="#0d867f"
-			name="suoxiao"
-			@click="process.minimize"
-		/>
+		<svg-icon class="margin" color="#0d867f" size="38" :name="minimize ? 'maximize' : 'restore'" @click="handleMize" />
+		<svg-icon class="margin minimize" color="#0d867f" name="suoxiao" @click="process.minimize" />
 		<!-- <div class="margin upload">
             <i class="upload-icon"></i>
             <span>14</span>

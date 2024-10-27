@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { ImageView } from '@components'
-const props = withDefaults(
-	defineProps<{ currentData: any | undefined; index: number; isLast: boolean }>(),
-	{
-		currentData: undefined,
-		index: 0,
-		isLast: true
-	}
-)
+const props = withDefaults(defineProps<{ currentData: any | undefined; index: number; isLast: boolean }>(), {
+	currentData: undefined,
+	index: 0,
+	isLast: true
+})
 
 const handlerCurrentWorkOrder = () => {
 	console.log(props.currentData, 9999)

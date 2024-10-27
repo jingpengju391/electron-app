@@ -29,11 +29,7 @@ const data = new Array(100000000)
 	<div ref="containerOrder" class="container-order">
 		<virtual-list :list="data" width="450px" :height="height">
 			<template #default="{ item, index }">
-				<work-order-item
-					:current-data="item"
-					:index="index"
-					:is-last="index === data.length - 1"
-				/>
+				<work-order-item :current-data="item" :index="index" :is-last="index === data.length - 1" />
 			</template>
 		</virtual-list>
 		<upload />

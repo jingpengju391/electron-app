@@ -3,14 +3,7 @@ import { isDev } from '../utils'
 import { WindowConfig } from '@shared/dataModelTypes/windows'
 import { addWinodws } from '../configWindows'
 
-export async function createWindow({
-	sign,
-	loadFile,
-	loadURL,
-	options,
-	isOpenDevTools = true,
-	callback
-}: WindowConfig) {
+export async function createWindow({ sign, loadFile, loadURL, options, isOpenDevTools = true, callback }: WindowConfig) {
 	const focusedWindow = new BrowserWindow(options)
 
 	callback && (await callback(focusedWindow))
@@ -30,19 +23,13 @@ function openDevTools(focusedWindow: BrowserWindow, isOpenDevTools: boolean = fa
 	// see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
 	// code: -32601 about Autofill.enable wasn't found
 	// see https://github.com/electron/electron/issues/41614#issuecomment-2006678760
-	;(isDev || import.meta.env.MODE === 'test') &&
-		isOpenDevTools &&
-		focusedWindow.webContents.openDevTools({ mode: 'right' })
+	;(isDev || import.meta.env.MODE === 'test') && isOpenDevTools && focusedWindow.webContents.openDevTools({ mode: 'right' })
 }
 
 // pass loadFile, loadURL, and isDev all at once.
 // meanwhile, this means that if no parameters are passed during the call,
 // the function will not encounter any errors.
-function handlerFocusedWindowLoadFile(
-	focusedWindow: BrowserWindow,
-	loadFile?: string,
-	loadURL?: string
-) {
+function handlerFocusedWindowLoadFile(focusedWindow: BrowserWindow, loadFile?: string, loadURL?: string) {
 	if (isDev) {
 		loadURL ? focusedWindow.loadURL(loadURL) : loadFile && focusedWindow.loadFile(loadFile)
 	} else {

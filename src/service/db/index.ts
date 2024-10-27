@@ -29,15 +29,10 @@ class DbService implements DbServiceClass {
 			DBClient.initialize(this.userSpace, workspacePath)
 			const migrationConfig: Knex.MigratorConfig = { directory: this.migrationFilePath }
 			await this.backupOldVersionWorkspace(workspacePath)
-			const currentVersion = await DBClient.getInstance(
-				this.userSpace
-			).migrate.currentVersion(migrationConfig)
-			const targetVersion = await DBClient.getInstance(this.userSpace).migrate.latest(
-				migrationConfig
-			)
+			const currentVersion = await DBClient.getInstance(this.userSpace).migrate.currentVersion(migrationConfig)
+			const targetVersion = await DBClient.getInstance(this.userSpace).migrate.latest(migrationConfig)
 
-			currentVersion !== targetVersion &&
-				(await DBClient.getInstance(this.userSpace).migrate.latest(migrationConfig))
+			currentVersion !== targetVersion && (await DBClient.getInstance(this.userSpace).migrate.latest(migrationConfig))
 
 			const isAppFirstLoaded = currentVersion === 'none' || currentVersion === '0'
 			isAppFirstLoaded &&
@@ -55,9 +50,7 @@ class DbService implements DbServiceClass {
 			})
 			// pending migrations length eq to 0
 			if (migrateList[1].length !== 0) {
-				const currVersion = await DBClient.getInstance(
-					this.userSpace
-				).migrate.currentVersion()
+				const currVersion = await DBClient.getInstance(this.userSpace).migrate.currentVersion()
 
 				const parsedPath = path.parse(workspacePath)
 				const dataPath = parsedPath.dir

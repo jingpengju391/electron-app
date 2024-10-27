@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 
 const BASEHEADER = { 'X-Requested-With': 'XMLHttpRequest' }
@@ -48,9 +49,7 @@ class HttpClient {
 
 		this.request.use(
 			(config: AxiosRequestConfig) => {
-				const token = sessionStorage.getItem('token')
-					? sessionStorage.getItem('token')?.replace(/"/g, '')
-					: ''
+				const token = sessionStorage.getItem('token') ? sessionStorage.getItem('token')?.replace(/"/g, '') : ''
 				if (token) {
 					config.headers = {
 						...config.headers,
@@ -84,18 +83,12 @@ class HttpClient {
 			promise
 				.then((response) => {
 					const ENDTIME = new Date().getTime()
-					console.log(
-						`%c > ${this.url} ----------- 接口耗时 -----------> ${(ENDTIME - STARTTIME) / 1000}秒`,
-						'color:#40E7FF'
-					)
+					console.log(`%c > ${this.url} ----------- 接口耗时 -----------> ${(ENDTIME - STARTTIME) / 1000}秒`, 'color:#40E7FF')
 					resolve(response)
 				})
 				.catch((err) => {
 					const ENDTIME = new Date().getTime()
-					console.log(
-						`%c >${this.url} ----------- 接口耗时 -----------> ${(ENDTIME - STARTTIME) / 1000}秒`,
-						'color:#40E7FF'
-					)
+					console.log(`%c >${this.url} ----------- 接口耗时 -----------> ${(ENDTIME - STARTTIME) / 1000}秒`, 'color:#40E7FF')
 					resolve({
 						error: err
 					})

@@ -49,6 +49,8 @@ export function unregisterRenderProcessMessageHandlers() {
 	ipcMain.removeHandler('process:screenshot')
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 export function registerRenderCreateWindowMessageHandler() {}
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 export function unregisterRenderCreateWindowMessageHandler() {}

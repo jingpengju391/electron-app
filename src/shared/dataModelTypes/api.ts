@@ -18,6 +18,8 @@ export type Api = {
 }
 
 export type ElectronApi = {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	send: (channel: string, data: any) => void
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	receive: (channel: string, data: any) => void
 }

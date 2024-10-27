@@ -1,6 +1,5 @@
-export function singleton<T extends new (...args: any[]) => any>(
-	className: T
-): T & (new (...args: ConstructorParameters<T>) => InstanceType<T>) & InstanceType<T> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function singleton<T extends new (...args: any[]) => any>(className: T): T & (new (...args: ConstructorParameters<T>) => InstanceType<T>) & InstanceType<T> {
 	let instance: InstanceType<T>
 	const proxy = new Proxy(className, {
 		construct(target, args) {
@@ -13,9 +12,7 @@ export function singleton<T extends new (...args: any[]) => any>(
 		}
 	})
 	className.prototype.constructor = proxy
-	return proxy as T &
-		(new (...args: ConstructorParameters<T>) => InstanceType<T>) &
-		InstanceType<T>
+	return proxy as T & (new (...args: ConstructorParameters<T>) => InstanceType<T>) & InstanceType<T>
 }
 
 export function performChunk<T>(datas: T[], consumer: (item: T, index: number) => void): void {

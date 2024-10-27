@@ -28,43 +28,23 @@ const close = async () => {
 			<h3 @click="close">检测图谱上传</h3>
 			<div class="img-list">
 				<div class="img-list-box">
-					<image-view
-						class="img-list-box-item"
-						src="https://picsum.photos/200/300"
-						:loading="false"
-					/>
+					<image-view class="img-list-box-item" src="https://picsum.photos/200/300" :loading="false" />
 					<el-button type="primary" size="large">重测</el-button>
 				</div>
 				<div class="img-list-box">
-					<image-view
-						class="img-list-box-item"
-						src="https://picsum.photos/200/300"
-						:loading="false"
-					/>
+					<image-view class="img-list-box-item" src="https://picsum.photos/200/300" :loading="false" />
 					<el-button type="primary" size="large">重测</el-button>
 				</div>
 				<div class="img-list-box">
-					<image-view
-						class="img-list-box-item"
-						src="https://picsum.photos/200/300"
-						:loading="false"
-					/>
+					<image-view class="img-list-box-item" src="https://picsum.photos/200/300" :loading="false" />
 					<el-button type="primary" size="large">重测</el-button>
 				</div>
 				<div class="img-list-box">
-					<image-view
-						class="img-list-box-item"
-						src="https://picsum.photos/200/300"
-						:loading="false"
-					/>
+					<image-view class="img-list-box-item" src="https://picsum.photos/200/300" :loading="false" />
 					<el-button type="primary" size="large">重测</el-button>
 				</div>
 				<div class="img-list-box">
-					<image-view
-						class="img-list-box-item"
-						src="https://picsum.photos/200/300"
-						:loading="false"
-					/>
+					<image-view class="img-list-box-item" src="https://picsum.photos/200/300" :loading="false" />
 					<el-button type="primary" size="large">重测</el-button>
 				</div>
 			</div>

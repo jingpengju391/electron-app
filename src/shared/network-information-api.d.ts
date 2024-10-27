@@ -7,16 +7,7 @@ declare interface NavigatorNetworkInformation {
 type Megabit = number
 type Millisecond = number
 type EffectiveConnectionType = '2g' | '3g' | '4g' | 'slow-2g'
-type ConnectionType =
-	| 'bluetooth'
-	| 'cellular'
-	| 'ethernet'
-	| 'mixed'
-	| 'none'
-	| 'other'
-	| 'unknown'
-	| 'wifi'
-	| 'wimax'
+type ConnectionType = 'bluetooth' | 'cellular' | 'ethernet' | 'mixed' | 'none' | 'other' | 'unknown' | 'wifi' | 'wimax'
 interface NetworkInformation extends EventTarget {
 	readonly type?: ConnectionType
 	readonly effectiveType?: EffectiveConnectionType

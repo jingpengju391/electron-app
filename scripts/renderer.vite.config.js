@@ -12,12 +12,7 @@ import { resolvePath, dirPath } from './util'
 import alias from './alias'
 
 const mode = process.env.NODE_ENV || 'development'
-const {
-	VITE_APP_SERVER_PORT,
-	VITE_APP_SERVER_HOST,
-	VITE_APP_SERVER_OPEN,
-	VITE_APP_AUTO_IMPORT_PATH
-} = loadEnv(mode, process.cwd())
+const { VITE_APP_SERVER_PORT, VITE_APP_SERVER_HOST, VITE_APP_SERVER_OPEN, VITE_APP_AUTO_IMPORT_PATH } = loadEnv(mode, process.cwd())
 const pathSrc = path.resolve(__dirname, VITE_APP_AUTO_IMPORT_PATH)
 
 export default {

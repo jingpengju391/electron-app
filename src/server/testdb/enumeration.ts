@@ -11,9 +11,7 @@ export const enumeration = {
 			})
 		},
 		async queryDB(id: number) {
-			return await DBClient.getInstance(enumeration.userSpace)('test')
-				.where('id', id)
-				.select('*')
+			return await DBClient.getInstance(enumeration.userSpace)('test').where('id', id).select('*')
 		}
 	}
 }

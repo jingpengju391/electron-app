@@ -20,7 +20,7 @@ export default class DBClient {
 				min: 3,
 				max: 10,
 				// https://github.com/knex/knex/issues/453
-				afterCreate: (conn: any, cb: any) => conn.run('PRAGMA foreign_keys = ON', cb)
+				afterCreate: (conn: { run: (arg1: string, cb: () => void) => void }, cb: () => void) => conn.run('PRAGMA foreign_keys = ON', cb)
 			},
 			migrations: {
 				tableName: 'knex_migrations'

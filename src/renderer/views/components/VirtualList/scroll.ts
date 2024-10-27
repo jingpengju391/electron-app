@@ -34,16 +34,9 @@ export const onScroll = debounce((scroll: { scrollLeft: number; scrollTop: numbe
 }, 100)
 
 // get el height
-function getHeightAtEl(): {
-	container: number
-	containerItem: number
-} {
-	const container = document.querySelectorAll(
-		`.el-scrollbar.${ClassNameVarType.container}`
-	)[0] as HTMLDivElement
-	const containerItem = document.querySelectorAll(
-		`.${ClassNameVarType.containerItem}`
-	)[0] as HTMLDivElement
+function getHeightAtEl(): { container: number; containerItem: number } {
+	const container = document.querySelectorAll(`.el-scrollbar.${ClassNameVarType.container}`)[0] as HTMLDivElement
+	const containerItem = document.querySelectorAll(`.${ClassNameVarType.containerItem}`)[0] as HTMLDivElement
 	return {
 		container: container?.offsetHeight || 0,
 		containerItem: containerItem?.offsetHeight || 0
