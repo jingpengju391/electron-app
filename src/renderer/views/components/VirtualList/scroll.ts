@@ -3,10 +3,12 @@ import { ClassNameVarType } from './type'
 import { ref, nextTick } from 'vue'
 import performChunk from './poerformChunk'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let totalData: any[] = []
 let isFinishLoadData = false
 let variableHeight = 0
 let itemHeight = 0
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const currentRender = ref<any[]>([])
 
 export async function initData<T>(arr: T[]) {
