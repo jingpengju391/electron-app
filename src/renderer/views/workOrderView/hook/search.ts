@@ -1,11 +1,42 @@
 import { ref } from 'vue'
 import { OrderSelectOption } from '@shared'
-
-export const searchNameValue = ref<string>('')
-export const searchTypeValue = ref<string>('')
-export const searchLevelValue = ref<string>('')
-export const searchStatusValue = ref<string>('')
+import { FilterOrder, PointPartialDischargeList } from '@shared/dataModelTypes/partialDischarge'
 
 export const searchTypeOption = ref<OrderSelectOption[]>([])
 export const searchLevelOption = ref<OrderSelectOption[]>([])
-export const searchStatusOption = ref<OrderSelectOption[]>([])
+export const searchStatusOption = ref<OrderSelectOption[]>([
+	{
+		label: '待上传',
+		value: 0
+	},
+	{
+		label: '已完成',
+		value: 1
+	}
+])
+
+export function handlerSearchOptionByPointPartialDischargeList(data: PointPartialDischargeList) {
+	searchTypeOption.value.length = 0
+	searchLevelOption.value.length = 0
+	const optionMap = new Map<FilterOrder, Map<string, boolean>>([
+		[FilterOrder.deviceType, new Map<string, boolean>()],
+		[FilterOrder.voltageLevel, new Map<string, boolean>()]
+	])
+	for (const iterator of data) {
+		if (!optionMap.get(FilterOrder.deviceType)?.get(iterator[FilterOrder.deviceType])) {
+			optionMap.get(FilterOrder.deviceType)?.set(iterator[FilterOrder.deviceType], true)
+			searchTypeOption.value.push({
+				label: iterator.deviceTypeName,
+				value: iterator[FilterOrder.deviceType]
+			})
+		}
+
+		if (!optionMap.get(FilterOrder.voltageLevel)?.get(iterator[FilterOrder.voltageLevel])) {
+			optionMap.get(FilterOrder.voltageLevel)?.set(iterator[FilterOrder.voltageLevel], true)
+			searchLevelOption.value.push({
+				label: iterator[FilterOrder.voltageLevel],
+				value: iterator[FilterOrder.voltageLevel]
+			})
+		}
+	}
+}

@@ -4,17 +4,20 @@ import { shell } from 'electron'
 import { getScreenSize, isMac } from '../utils'
 import icon from '../../../resources/icon.png?asset'
 import initDefaultWorkspace from '../modules/initDataBeforeCreateWindow'
-import { getWinodws } from '.'
+import { getModelWindow } from '.'
+import { receivePartialDischargeListData } from '@server/partialDischarge/socketPartialDischarge'
 
 export function mainWindow(): WindowConfig {
 	const { width, height } = getScreenSize()
+	const w = Math.floor(width * 0.7)
+	const h = Math.floor(height * 0.7)
 	return {
 		sign: ModelWindowKey.mainWindow,
 		loadURL: process.env['ELECTRON_RENDERER_URL'],
 		loadFile: join(__dirname, '../renderer/index.html'),
 		options: {
-			width: width * 0.6,
-			height: height * 0.6,
+			width: w,
+			height: h,
 			show: false,
 			frame: isMac,
 			autoHideMenuBar: true,
@@ -27,10 +30,10 @@ export function mainWindow(): WindowConfig {
 		callback: async (focusedWindow) => {
 			await initDefaultWorkspace()
 
-			focusedWindow.setMinimumSize(800, 600)
+			focusedWindow.setMinimumSize(w, h)
 
 			focusedWindow.once('ready-to-show', () => {
-				const loadingWindow = getWinodws(ModelWindowKey.loadingWindow)
+				const loadingWindow = getModelWindow(ModelWindowKey.loadingWindow)
 				loadingWindow?.hide()
 				loadingWindow?.close()
 				focusedWindow.show()
@@ -43,6 +46,7 @@ export function mainWindow(): WindowConfig {
 
 			focusedWindow.on('resize', () => {
 				focusedWindow.webContents.send('window-change-resize')
+				receivePartialDischargeListData([])
 			})
 		}
 	}

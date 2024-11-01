@@ -2,7 +2,7 @@ import { ModelWindowKey, WindowConfig } from '@shared/dataModelTypes/windows'
 import { join } from 'path'
 import { shell } from 'electron'
 import { getScreenSize, isDev } from '../utils'
-import { getWinodws } from '.'
+import { getModelWindow } from '.'
 
 export function shotWindow(): WindowConfig {
 	const { width, height } = getScreenSize()
@@ -22,7 +22,7 @@ export function shotWindow(): WindowConfig {
 				preload: join(__dirname, '../preload/index.js'),
 				sandbox: false
 			},
-			parent: getWinodws(ModelWindowKey.mainWindow)
+			parent: getModelWindow(ModelWindowKey.mainWindow)
 		},
 		callback: async (focusedWindow) => {
 			focusedWindow.once('ready-to-show', () => {

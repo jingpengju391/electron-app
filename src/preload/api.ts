@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron'
-import type { Api } from '@shared/dataModelTypes/api'
+import type { Api, ScreenData } from '@shared/dataModelTypes/api'
 
 // Custom APIs for renderer
 const api: Api = {
@@ -18,7 +18,9 @@ const api: Api = {
 		minimize: () => ipcRenderer.invoke('process:minimize'),
 		maximize: () => ipcRenderer.invoke('process:maximize'),
 		desktopCapturer: () => ipcRenderer.invoke('process:desktopCapturer'),
-		screenshot: (isOpen: boolean) => ipcRenderer.invoke('process:screenshot', isOpen)
+		screenshot: (params: ScreenData) => ipcRenderer.invoke('process:screenshot', params),
+		screenshotImage: (params: ScreenData) => ipcRenderer.invoke('process:screenshot-image', params),
+		uploadPartialDischargeListData: (params: string) => ipcRenderer.invoke('process:uploadPartialDischargeListData', params)
 	}
 }
 

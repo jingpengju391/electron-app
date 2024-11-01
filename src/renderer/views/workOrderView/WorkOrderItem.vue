@@ -1,28 +1,33 @@
 <script setup lang="ts">
 import { ImageView } from '@components'
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const props = withDefaults(defineProps<{ currentData: any | undefined; index: number; isLast: boolean }>(), {
+import { PointPartialDischarge } from '@shared/dataModelTypes/partialDischarge'
+import { useWorkOrder } from '@stores'
+
+const props = withDefaults(defineProps<{ item: PointPartialDischarge | undefined; currentData: PointPartialDischarge | undefined; index: number; isLast: boolean }>(), {
+	item: undefined,
 	currentData: undefined,
 	index: 0,
 	isLast: true
 })
 
+const workOrder = useWorkOrder()
+
 const handlerCurrentWorkOrder = () => {
-	console.log(props.currentData, 9999)
+	workOrder.updatedCurrentPartialDischarge(props.item)
 }
 </script>
 <template>
 	<div :class="{ paddingBottom: !isLast }" @click="handlerCurrentWorkOrder">
-		<div :class="{ container: true, active: index === 3 }">
-			<image-view class="container-image" src="https://picsum.photos/200/300" />
+		<div :class="{ container: true, active: item?.workDetailId === currentData?.workDetailId }">
+			<image-view class="container-image" :src="item?.deviceType || ''" err-src="../assets/svg/default_pic.svg" />
 			<div class="container-right">
 				<aside>
-					<el-text class="title">Default</el-text>
-					<el-text class="status">Default</el-text>
+					<el-text class="title text-overflow-one">{{ item?.detectMethodCn }}</el-text>
+					<el-text class="status text-overflow-one">{{ item?.files?.length ? '已完成' : '待上传' }}</el-text>
 				</aside>
 				<aside>
-					<el-text class="position">Default</el-text>
-					<el-text class="number">Default</el-text>
+					<el-text class="position text-overflow-one">{{ item?.detectPositionName }}</el-text>
+					<el-text class="number text-overflow-one">( {{ item?.files?.length || 0 }} )</el-text>
 				</aside>
 			</div>
 		</div>

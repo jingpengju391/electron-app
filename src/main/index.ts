@@ -8,7 +8,9 @@ import {
 	registerRenderProcessMessageHandlers,
 	unregisterRenderProcessMessageHandlers,
 	registerRenderCreateWindowMessageHandler,
-	unregisterRenderCreateWindowMessageHandler
+	unregisterRenderCreateWindowMessageHandler,
+	registerRenderProcessShortcutsHandlers,
+	unregisterRenderProcessShortcutsHandlers
 } from './modules'
 
 // This method will be called when Electron has finished
@@ -60,6 +62,7 @@ function registerAllRenderMessageHandlers() {
 	registerRenderMessageHandlers()
 	registerRenderProcessMessageHandlers()
 	registerRenderCreateWindowMessageHandler()
+	registerRenderProcessShortcutsHandlers()
 }
 
 // all ipcs unregister in here when window is closed
@@ -68,6 +71,7 @@ function unregisterAllRenderMessageHandlers() {
 	unregisterRenderMessageHandlers()
 	unregisterRenderProcessMessageHandlers()
 	unregisterRenderCreateWindowMessageHandler()
+	unregisterRenderProcessShortcutsHandlers()
 }
 
 // In this file you can include the rest of your app"s specific main process

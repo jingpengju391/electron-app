@@ -13,7 +13,9 @@ export type Api = {
 		minimize: () => Promise<void>
 		maximize: () => Promise<void>
 		desktopCapturer: () => Promise<string>
-		screenshot: (isOpen: boolean) => Promise<void>
+		screenshot: (params: ScreenData) => Promise<ScreenData>
+		screenshotImage: (params: ScreenData) => Promise<ScreenData>
+		uploadPartialDischargeListData: (params: string) => Promise<void>
 	}
 }
 
@@ -22,4 +24,9 @@ export type ElectronApi = {
 	send: (channel: string, data: any) => void
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	receive: (channel: string, data: any) => void
+}
+
+export type ScreenData = {
+	src: string
+	screenshotStatus: boolean
 }

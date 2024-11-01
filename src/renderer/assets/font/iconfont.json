@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "23984107",
+      "name": "连接平台-我的连接器",
+      "font_class": "lianjiepingtai-wodelianjieqi",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
+    },
+    {
+      "icon_id": "35535642",
+      "name": "连接断开",
+      "font_class": "lianjieduankai",
+      "unicode": "e6d6",
+      "unicode_decimal": 59094
+    },
+    {
+      "icon_id": "5712913",
+      "name": "上传",
+      "font_class": "shangchuan",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "11121440",
+      "name": "剪切",
+      "font_class": "jianqie",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "11121506",
+      "name": "粘贴",
+      "font_class": "niantie",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "29925",
+      "name": "close",
+      "font_class": "close",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
       "icon_id": "1299794",
       "name": "Maximize-1",
       "font_class": "maximize",

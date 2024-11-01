@@ -5,12 +5,11 @@ export * from './main'
 export * from './shot'
 export * from './loading'
 
-const windows = new Map<ModelWindowKey, BrowserWindow>()
-
 export function addWinodws(label: ModelWindowKey, value: BrowserWindow) {
-	windows.set(label, value)
+	global.modelWindow = global.modelWindow || new Map<ModelWindowKey, BrowserWindow>()
+	global.modelWindow.set(label, value)
 }
 
-export function getWinodws(label: ModelWindowKey): BrowserWindow | undefined {
-	return windows.get(label)
+export function getModelWindow(label: ModelWindowKey): BrowserWindow | undefined {
+	return global?.modelWindow.get(label)
 }

@@ -1,10 +1,8 @@
 import { debounce } from '@/utils'
 import { ClassNameVarType } from './type'
-import { ref, nextTick } from 'vue'
+import { ref } from 'vue'
 import performChunk from './poerformChunk'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let totalData: any[] = []
 let isFinishLoadData = false
 let variableHeight = 0
 let itemHeight = 0
@@ -12,26 +10,32 @@ let itemHeight = 0
 export const currentRender = ref<any[]>([])
 
 export async function initData<T>(arr: T[]) {
-	totalData = arr
-	currentRender.value.push(arr[0])
-	await nextTick()
+	currentRender.value.length = 0
+	isFinishLoadData = false
+
+	arr[0] && currentRender.value.push(arr[0])
 	// view area height : variableHeight
 	// scroll space in Y : scrollTop
 	// document total list height : getScrollHeight
 	const { container, containerItem } = getHeightAtEl()
 	variableHeight = container
 	itemHeight = containerItem
-	onScroll({ scrollLeft: 0, scrollTop: variableHeight })
+	const finishLoadDataNumber = currentRender.value.length
+	// will reach bottom ?
+	const isReachBottom = willReachBottom(finishLoadDataNumber, 0)
+	if (!isReachBottom || isFinishLoadData) return
+	const loadData = getWillLoadData(finishLoadDataNumber, 0, arr)
+	currentRender.value.push(...loadData)
 }
 
-export const onScroll = debounce((scroll: { scrollLeft: number; scrollTop: number }) => {
+export const onScroll = debounce(<T>(scroll: { scrollLeft: number; scrollTop: number }, arr: T[]) => {
 	const { scrollTop } = scroll
 	// finish load data number
 	const finishLoadDataNumber = currentRender.value.length
 	// will reach bottom ?
 	const isReachBottom = willReachBottom(finishLoadDataNumber, scrollTop)
 	if (!isReachBottom || isFinishLoadData) return
-	const loadData = getWillLoadData(finishLoadDataNumber, scrollTop)
+	const loadData = getWillLoadData(finishLoadDataNumber, scrollTop, arr)
 	performChunk(loadData, (item) => currentRender.value.push(item))
 }, 100)
 
@@ -60,7 +64,7 @@ function getneedLoadNumber(scrollTop: number): number {
 	return (Math.ceil(scrollTop / variableHeight) + 2) * pageSize
 }
 
-function getWillLoadData(finishLoadDataNumber: number, scrollTop: number) {
+function getWillLoadData<T>(finishLoadDataNumber: number, scrollTop: number, totalData: T[]) {
 	const totalNumber = totalData.length
 	const needLoadNumber = getneedLoadNumber(scrollTop)
 	if (needLoadNumber >= totalNumber) {

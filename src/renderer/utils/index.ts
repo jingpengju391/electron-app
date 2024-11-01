@@ -25,3 +25,24 @@ export function throttle(fn: (...args: any[]) => void, delay: number = 600): (..
 		}, delay)
 	}
 }
+
+export const copyText = (function () {
+	if (navigator.clipboard) {
+		return (text: string) => {
+			navigator.clipboard.writeText(text)
+		}
+	} else {
+		return (text: string) => {
+			const input = document.createElement('input')
+			input.setAttribute('value', text)
+			document.body.appendChild(input)
+			input.select()
+			document.execCommand('copy')
+			document.body.removeChild(input)
+		}
+	}
+})()
+
+export const getAssetsFile = (name: string): string => {
+	return new URL(`../assets/svg/${name}.svg`, import.meta.url).href
+}

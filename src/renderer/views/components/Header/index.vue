@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useWindowStore } from '@stores'
-import { process } from '@hooks/api'
+import { useWindowStore, useWorkOrder } from '@stores'
+import { process, electronAPI } from '@hooks/api'
 import { SvgIcon } from '@components'
 import { getNetWorkInfo } from '@utils/netWork'
 
 const windowStore = useWindowStore()
+const workOrder = useWorkOrder()
 const minimize = computed(() => windowStore.$state.minimize)
+const isConnectServer = computed(() => workOrder.$state.isConnectServer)
 
 const netInfo = ref<NetworkInformationMode>({ type: '无服务', rtt: 0, downlink: 0 })
 
@@ -33,6 +35,10 @@ updateWithNetWork()
 window.addEventListener('online', updateWithNetWork)
 window.addEventListener('offline', updateWithNetWork)
 navigator.connection?.addEventListener('change', updateWithNetWork)
+
+electronAPI.receive('socket-connect-server-status', (isConnectServer: boolean) => {
+	workOrder.updatedIsConnectServer(isConnectServer)
+})
 </script>
 
 <template>
@@ -40,12 +46,13 @@ navigator.connection?.addEventListener('change', updateWithNetWork)
 		<i-ep-close class="margin close" color="#0d867f" @click="process.close" />
 		<svg-icon class="margin" color="#0d867f" size="38" :name="minimize ? 'maximize' : 'restore'" @click="handleMize" />
 		<svg-icon class="margin minimize" color="#0d867f" name="suoxiao" @click="process.minimize" />
+		<svg-icon class="margin mobile" :color="isConnectServer ? '#515151' : '#cdcdcd'" :name="isConnectServer ? 'lianjiepingtai-wodelianjieqi' : 'lianjieduankai'" @click="process.minimize" />
 		<!-- <div class="margin upload">
             <i class="upload-icon"></i>
             <span>14</span>
         </div> -->
 		<!-- <svg-icon class="margin wifi" :name="`wifi_${ getSignalLevel(42) }`"/> -->
-		<div class="margin mobile">
+		<div class="margin">
 			<svg-icon :name="`mobile_${signal}`" />
 			<span>{{ netInfo.type.toUpperCase() }}</span>
 		</div>
