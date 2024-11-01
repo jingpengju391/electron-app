@@ -10,6 +10,10 @@ const props = withDefaults(defineProps<{ item: PointPartialDischarge | undefined
 	isLast: true
 })
 
+const getAssetsFile = (name: string | undefined): string => {
+	return new URL(`../../assets/svg/${name}.svg`, import.meta.url).href
+}
+
 const workOrder = useWorkOrder()
 
 const handlerCurrentWorkOrder = () => {
@@ -19,7 +23,7 @@ const handlerCurrentWorkOrder = () => {
 <template>
 	<div :class="{ paddingBottom: !isLast }" @click="handlerCurrentWorkOrder">
 		<div :class="{ container: true, active: item?.workDetailId === currentData?.workDetailId }">
-			<image-view class="container-image" :src="item?.deviceType || ''" err-src="../assets/svg/default_pic.svg" />
+			<image-view class="container-image" :src="getAssetsFile(item?.deviceType)" :err-src="getAssetsFile('default_pic')" />
 			<div class="container-right">
 				<aside>
 					<el-text class="title text-overflow-one">{{ item?.detectMethodCn }}</el-text>

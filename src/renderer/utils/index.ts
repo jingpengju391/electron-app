@@ -42,7 +42,3 @@ export const copyText = (function () {
 		}
 	}
 })()
-
-export const getAssetsFile = (name: string): string => {
-	return new URL(`../assets/svg/${name}.svg`, import.meta.url).href
-}
