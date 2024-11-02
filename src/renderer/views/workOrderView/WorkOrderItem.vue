@@ -15,11 +15,13 @@ const workOrder = useWorkOrder()
 const handlerCurrentWorkOrder = () => {
 	workOrder.updatedCurrentPartialDischarge(props.item)
 }
+
+const getAssetsFile = (name: string | undefined): string => new URL(`../../assets/svg/${name}.svg`, import.meta.url).href
 </script>
 <template>
 	<div :class="{ paddingBottom: !isLast }" @click="handlerCurrentWorkOrder">
 		<div :class="{ container: true, active: item?.workDetailId === currentData?.workDetailId }">
-			<image-view class="container-image" :src="`../assets/svg/${item?.deviceType}.svg`" :err-src="'../assets/svg/default_pic.svg'" />
+			<image-view class="container-image" :src="getAssetsFile(item?.deviceType)" :err-src="getAssetsFile('default_pic')" />
 			<div class="container-right">
 				<aside>
 					<el-text class="title text-overflow-one">{{ item?.detectMethodCn }}</el-text>
