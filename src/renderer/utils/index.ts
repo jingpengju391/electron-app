@@ -42,3 +42,8 @@ export const copyText = (function () {
 		}
 	}
 })()
+
+export const getAssetsFile = (url: string): string => {
+	// const modules = import.meta.glob('../assets/svg/*.svg', { eager: true })
+	return url
+}

@@ -1,12 +1,12 @@
 import path from 'path'
 import { app } from 'electron'
 import DbService from '@service/db'
-// import { createServer } from '@service/socket'
+import { createServer } from '@service/socket'
 
 export default async function initDefaultWorkspace() {
 	// init db work space
 	await initializeDBService()
-	// createServer('localhost', 1000)
+	createServer('localhost', 1000)
 	//in this file, you can include other time-consuming data for the application
 	//code. you can also place them in separate functions and call them here.
 }

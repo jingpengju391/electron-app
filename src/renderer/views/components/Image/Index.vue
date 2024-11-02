@@ -1,4 +1,5 @@
 <script setup lang="ts" name="ImageView">
+import { getAssetsFile } from '@/utils'
 import { ref } from 'vue'
 const props = withDefaults(
 	defineProps<{
@@ -30,7 +31,7 @@ const closeLoad = () => (imageLoad.value = false)
 	<el-image
 		v-loading="imageLoad"
 		class="container-image"
-		:src="src"
+		:src="getAssetsFile(src)"
 		:fit="fit"
 		:zoom-rate="zoomRate"
 		:max-scale="maxScale"
