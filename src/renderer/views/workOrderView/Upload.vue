@@ -8,6 +8,7 @@ import { ScreenData } from '@shared/index'
 import { useWorkOrder } from '@stores'
 import message from '@shared/dataModelConfig/message'
 import { PointPartialDischarge } from '@shared/dataModelTypes/partialDischarge'
+// import type { UploadProps } from 'element-plus'
 
 const dialogVisible = ref<boolean>(false)
 const clipboardContent = ref<string>('')
@@ -77,22 +78,44 @@ watch(
 	},
 	{ immediate: true }
 )
+
+
+// const handleChange: UploadProps['onChange'] = (uploadFile, uploadFiles) => {
+//   console.log(uploadFile, uploadFiles, 555)
+// }
 </script>
 
 <template>
 	<div class="container">
 		<div class="container-top">
 			<h3>检测图谱上传</h3>
-			<div class="upload-box" @click="openScreenshot">
-				<div :class="hidePreview ? 'clipboard-box active' : 'clipboard-box'">
-					<svg-icon v-if="hidePreview" color="#0d867f" size="50" name="jianqie" />
-					<el-text v-if="hidePreview" class="mx-1 text-overflow-one" type="info">单击 / control + shift + x</el-text>
-					<div v-else class="upload-box-preview" :style="{ backgroundImage: `url(${clipboardContent})` }">
-						<div class="upload-box-preview-tools">
-							<i-ep-upload-filled @click.stop="handlerUpload" />
-							<i-ep-delete @click.stop="clipboardContent = ''" />
+			<div class="upload-box">
+				<div class="upload-box-way">
+					<div :class="hidePreview ? 'clipboard-box active' : 'clipboard-box'" @click="openScreenshot">
+						<svg-icon v-if="hidePreview" color="#0d867f" size="50" name="jianqie" />
+						<el-text v-if="hidePreview" class="mx-1 text-overflow-one" type="info">单击 / control + shift + x</el-text>
+						<div v-else class="upload-box-preview" :style="{ backgroundImage: `url(${clipboardContent})` }">
+							<div class="upload-box-preview-tools">
+								<i-ep-upload-filled @click.stop="handlerUpload" />
+								<i-ep-delete @click.stop="clipboardContent = ''" />
+							</div>
 						</div>
 					</div>
+					<!-- <el-upload
+						class="upload-choose"
+						action="#"
+						drag
+						multiple
+						:limit="2"
+						:auto-upload="false"
+						:show-file-list="false"
+						:on-change="handleChange"
+					>
+						<svg-icon color="#0d867f" size="50" name="jianqie" />
+						<div class="el-upload__text">
+							<el-text class="mx-1 text-overflow-one" type="info">单击 / 拖拽</el-text>
+						</div>
+					</el-upload> -->
 				</div>
 				<el-text class="mx-1 text-overflow-one" type="info">{{ message.order.exceedingQuantity }}</el-text>
 			</div>
