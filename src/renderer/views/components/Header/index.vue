@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useWindowStore, useWorkOrder } from '@stores'
-import { process, electronAPI } from '@hooks/api'
+import { process, electronAPI, isMac } from '@hooks/api'
 import { SvgIcon } from '@components'
 import { getNetWorkInfo } from '@utils/netWork'
 
@@ -43,9 +43,9 @@ electronAPI.receive('socket-connect-server-status', (isConnectServer: boolean) =
 
 <template>
 	<div class="container">
-		<i-ep-close class="margin close" color="#0d867f" @click="process.close" />
-		<svg-icon class="margin" color="#0d867f" size="38" :name="minimize ? 'maximize' : 'restore'" @click="handleMize" />
-		<svg-icon class="margin minimize" color="#0d867f" name="suoxiao" @click="process.minimize" />
+		<i-ep-close v-show="!isMac" class="margin close" color="#0d867f" @click="process.close" />
+		<svg-icon v-show="!isMac" class="margin" color="#0d867f" size="38" :name="minimize ? 'maximize' : 'restore'" @click="handleMize" />
+		<svg-icon v-show="!isMac" class="margin" color="#0d867f" name="suoxiao" @click="process.minimize" />
 		<svg-icon class="margin mobile" :color="isConnectServer ? '#515151' : '#cdcdcd'" :name="isConnectServer ? 'lianjiepingtai-wodelianjieqi' : 'lianjieduankai'" @click="process.minimize" />
 		<!-- <div class="margin upload">
             <i class="upload-icon"></i>

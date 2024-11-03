@@ -13,9 +13,6 @@
     .margin:last-child{
         margin: 0px;
     }
-    .minimize{
-        margin-right: auto;
-    }
     .close{
         border: 2px solid #0d867f;
         border-radius: 3px;
@@ -57,6 +54,7 @@
     .mobile{
         display: flex;
         align-items: flex-end;
+        margin-left: auto;
         span{
             font-weight: 600;
         }

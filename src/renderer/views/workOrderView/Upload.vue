@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 import { SvgIcon } from '@components'
-import { process } from '@hooks/api'
+import { process, isMac } from '@hooks/api'
 import { ImageView } from '@components'
 import { electronAPI } from '@hooks/api'
 import { ScreenData } from '@shared/index'
@@ -22,6 +22,16 @@ const openScreenshot = async () => {
 	if (files.value.length >= 5) {
 		ElMessage({
 			message: message.order.exceedingQuantity,
+			type: 'warning',
+			plain: true,
+			grouping: true
+		})
+		return
+	}
+
+	if(isMac){
+		ElMessage({
+			message: message.order.shotMac,
 			type: 'warning',
 			plain: true,
 			grouping: true

@@ -12,6 +12,7 @@ import {
 	registerRenderProcessShortcutsHandlers,
 	unregisterRenderProcessShortcutsHandlers
 } from './modules'
+import { isMac } from './utils'
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -53,7 +54,7 @@ app.on('window-all-closed', () => {
 async function registerAllInitWindows() {
 	await createWindow(loadingWindow())
 	await createWindow(mainWindow())
-	await createWindow(shotWindow())
+	!isMac && await createWindow(shotWindow())
 }
 
 // all ipcs register in here when window is open
