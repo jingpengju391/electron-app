@@ -1,25 +1,33 @@
 import { debounce } from '@/utils'
 import { ClassNameVarType } from './type'
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import performChunk from './poerformChunk'
 
 let isFinishLoadData = false
 let variableHeight = 0
 let itemHeight = 0
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const currentRender = ref<any[]>([])
+export const currentRender = ref<unknown[]>([])
 
-export async function initData<T>(arr: T[]) {
+export async function initData(arr: unknown[]) {
 	currentRender.value.length = 0
 	isFinishLoadData = false
 
-	arr[0] && currentRender.value.push(arr[0])
+	!currentRender.value.length && arr[0] && currentRender.value.push(arr[0])
 	// view area height : variableHeight
 	// scroll space in Y : scrollTop
 	// document total list height : getScrollHeight
 	const { container, containerItem } = getHeightAtEl()
-	variableHeight = container
-	itemHeight = containerItem
+
+	if (!containerItem) {
+		await nextTick()
+		const { container, containerItem } = getHeightAtEl()
+		variableHeight = container
+		itemHeight = containerItem
+	} else {
+		variableHeight = container
+		itemHeight = containerItem
+	}
+
 	const finishLoadDataNumber = currentRender.value.length
 	// will reach bottom ?
 	const isReachBottom = willReachBottom(finishLoadDataNumber, 0)
@@ -28,7 +36,7 @@ export async function initData<T>(arr: T[]) {
 	currentRender.value.push(...loadData)
 }
 
-export const onScroll = debounce(<T>(scroll: { scrollLeft: number; scrollTop: number }, arr: T[]) => {
+export const onScroll = debounce((scroll: { scrollLeft: number; scrollTop: number }, arr: unknown[]) => {
 	const { scrollTop } = scroll
 	// finish load data number
 	const finishLoadDataNumber = currentRender.value.length

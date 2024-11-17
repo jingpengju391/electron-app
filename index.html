@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function handlerObj(obj){
+            const result = {}
+            let path = ''
+            function _run(obj){
+                if(typeof obj !== 'object' || !obj){
+                    result[path] = obj
+                    path = ''
+                    return
+                }
+
+                for (const item in obj) {
+                    const six = path ? '.' : ''
+                    path += `${six}${item}`
+                    _run(obj[item])
+                }
+            }
+
+            _run(obj)
+
+            return result
+        }
+
+        console.log(handlerObj({
+            a: false,
+            b: {
+                c: '222'
+            },
+            d: {
+                k: {
+                    l: '3333'
+                }
+            },
+            f: null,
+            g: [22]
+        }))
+    </script>
+</body>
+</html>

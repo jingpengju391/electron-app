@@ -38,6 +38,7 @@ navigator.connection?.addEventListener('change', updateWithNetWork)
 
 electronAPI.receive('socket-connect-server-status', (isConnectServer: boolean) => {
 	workOrder.updatedIsConnectServer(isConnectServer)
+	!isConnectServer && process.closeScreenshotWindow()
 })
 </script>
 

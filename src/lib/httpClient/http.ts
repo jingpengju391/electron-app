@@ -3,7 +3,7 @@ import HttpClient from './client'
 const defaultConfig = {}
 const defaultMethod = {}
 
-export const $http = (url, method, params, options) => {
+export const $http = (url: string, method: string, params: any, options: any) => {
 	const defaultParams = Object.assign({}, defaultConfig, defaultMethod?.[method] ?? {})
 	const data = {
 		...defaultParams,

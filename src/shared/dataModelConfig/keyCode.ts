@@ -1,4 +1,5 @@
 export default {
 	COMMAND_OR_CONTROL: 'Control',
-	SHIFT: 'Shift'
+	SHIFT: 'Shift',
+	ESCAPE: 'Escape'
 }

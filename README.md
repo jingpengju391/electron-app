@@ -20,6 +20,10 @@ $ pnpm dev
 ### Build
 
 ```bash
+
+## Go Build
+when packaging, please close the anti-virus software, otherwise there will be unexpected errors.
+
 # For windows
 $ pnpm build:win
 

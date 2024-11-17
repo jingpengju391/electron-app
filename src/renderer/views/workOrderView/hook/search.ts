@@ -17,7 +17,6 @@ export const searchStatusOption = ref<OrderSelectOption[]>([
 
 export function handlerSearchOptionByPointPartialDischargeList(data: PointPartialDischargeList) {
 	searchTypeOption.value.length = 0
-	searchLevelOption.value.length = 0
 	const optionMap = new Map<FilterOrder, Map<string, boolean>>([
 		[FilterOrder.deviceType, new Map<string, boolean>()],
 		[FilterOrder.voltageLevel, new Map<string, boolean>()]
@@ -26,16 +25,8 @@ export function handlerSearchOptionByPointPartialDischargeList(data: PointPartia
 		if (!optionMap.get(FilterOrder.deviceType)?.get(iterator[FilterOrder.deviceType])) {
 			optionMap.get(FilterOrder.deviceType)?.set(iterator[FilterOrder.deviceType], true)
 			searchTypeOption.value.push({
-				label: iterator.deviceTypeName,
+				label: iterator.deviceName,
 				value: iterator[FilterOrder.deviceType]
-			})
-		}
-
-		if (!optionMap.get(FilterOrder.voltageLevel)?.get(iterator[FilterOrder.voltageLevel])) {
-			optionMap.get(FilterOrder.voltageLevel)?.set(iterator[FilterOrder.voltageLevel], true)
-			searchLevelOption.value.push({
-				label: iterator[FilterOrder.voltageLevel],
-				value: iterator[FilterOrder.voltageLevel]
 			})
 		}
 	}

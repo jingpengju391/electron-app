@@ -8,3 +8,5 @@ export function dirPath(processName = 'renderer') {
 	const { VITE_APP_BUILD_OUTPUTDIR } = loadEnv(mode, process.cwd())
 	return resolvePath(`../${VITE_APP_BUILD_OUTPUTDIR}/${processName}`)
 }
+
+export const isDev = process.env.NODE_ENV === 'development'

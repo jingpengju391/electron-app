@@ -2,10 +2,12 @@ appId: com.electron.app
 productName: 5g-app
 directories:
   buildResources: build
+afterPack: "scripts/removeLocales.js"
 files:
   - '!**/.vscode/*'
   - '!**/.pnpm-store/*'
   - '!src/*'
+  - '!dist/*'
   - '!docker/*'
   - '!patches/*'
   - '!scripts/*'
@@ -18,10 +20,16 @@ asarUnpack:
 win:
   executableName: 5g-app
 nsis:
+  include: 'tasks/nsi/installer.nsi'
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
-  createDesktopShortcut: always
+  createDesktopShortcut: true
+  allowToChangeInstallationDirectory: true
+  oneClick: false
+  menuCategory: false
+  perMachine: true
+
 mac:
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:
@@ -50,3 +58,4 @@ electronDownload:
 extraResources:
   from: ./db
   to: db
+  filter: [ "**/*", "!**/*.db" ]

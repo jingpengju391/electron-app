@@ -16,72 +16,65 @@
         flex: 1;
         .upload-box {
             flex: 1;
-            &-way {
+            .clipboard-box {
                 display: flex;
-                gap: 20px;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                cursor: pointer;
+                width: 100%;
                 height: calc(100% - 40px);
-                .clipboard-box {
+                border: 1px dashed #dcdfe6;
+                font-size: 40px;
+                padding: 20px;
+                .upload-box-preview{
+                    aspect-ratio: 1 / 1;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+            }
+
+            em{
+                font-style: normal;
+                font-size: 16px;
+            }
+
+            .active:hover{
+                border-color: #0d867f;
+            }
+            &-preview{
+                display: flex;
+                justify-content: center;
+                height: 100%;
+                border: 1px solid #dcdfe6;
+                position: relative;
+                border-radius: 8px;
+                overflow: hidden;
+                .container-image{
+                    max-height: calc(100% - 10px);
+                }
+                &-tools{
                     display: flex;
-                    flex: 1;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #00000080;
+                    position: absolute;
+                    opacity: 0;
+                    transition: .2s;
                     align-items: center;
                     justify-content: center;
-                    flex-direction: column;
-                    cursor: pointer;
-                    border: 1px dashed #dcdfe6;
-                    font-size: 40px;
-                padding: 20px;
-                    .upload-box-preview{
-                        aspect-ratio: 1 / 1;
-                        background-size: contain;
-                        background-repeat: no-repeat;
-                        background-position: center;
-                    }
+                    font-size: 30px;
+                    gap: 20px;
+                    color: #fff;
                 }
-                .upload-choose{
-                    flex: 1;
-                    height: 100%;
-                }
-                em{
-                    font-style: normal;
-                    font-size: 16px;
-                }
-    
-                .active:hover{
-                    border-color: #0d867f;
-                }
-                &-preview{
-                    display: flex;
-                    justify-content: center;
-                    height: 100%;
-                    border: 1px solid #dcdfe6;
-                    position: relative;
-                    border-radius: 8px;
-                    overflow: hidden;
-                    .container-image{
-                        max-height: calc(100% - 10px);
-                    }
-                    &-tools{
-                        display: flex;
-                        width: 100%;
-                        height: 100%;
-                        background-color: #00000080;
-                        position: absolute;
-                        opacity: 0;
-                        transition: .2s;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 30px;
-                        gap: 20px;
-                        color: #fff;
-                    }
-                    &-tools:hover{
-                        opacity: 1;
-                    }
+                &-tools:hover{
+                    opacity: 1;
                 }
             }
         }
         &:deep(.el-upload.is-drag) {
-            height: 100%;
+            height: calc(100% - 40px);
             .el-upload-dragger{
                 height: 100%;
                 display: flex;

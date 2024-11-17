@@ -1,5 +1,6 @@
 import { externalizeDepsPlugin } from 'electron-vite'
-import { dirPath } from './util'
+import terser from '@rollup/plugin-terser'
+import { dirPath, isDev } from './util'
 import alias from './alias'
 
 export default {
@@ -19,5 +20,13 @@ export default {
 	resolve: {
 		alias
 	},
-	plugins: [externalizeDepsPlugin()]
+	plugins: [
+		externalizeDepsPlugin(),
+		terser({
+			compress: {
+				drop_console: !isDev,
+				drop_debugger: !isDev
+			}
+		})
+	]
 }

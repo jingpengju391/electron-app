@@ -8,7 +8,6 @@ import { electronAPI } from '@hooks/api'
 import { debounce } from '@/utils'
 import { useWorkOrder } from '@stores'
 import { PointPartialDischargeList } from '@shared/dataModelTypes/partialDischarge'
-import { handlerSearchOptionByPointPartialDischargeList } from './hook/search'
 
 const workOrder = useWorkOrder()
 const partialDischargeList = computed(() => workOrder.filterPartialDischargeList)
@@ -27,17 +26,12 @@ onMounted(() => setHeight())
 electronAPI.receive('window-change-resize', setHeight)
 electronAPI.receive('receive-partial-discharge-list', (data: PointPartialDischargeList) => {
 	workOrder.updatedPartialDischargeList(data)
-	handlerSearchOptionByPointPartialDischargeList(data)
-	if (!currentPartialDischarge.value) {
-		workOrder.updatedCurrentPartialDischarge(partialDischargeList.value[0])
-	}
+	workOrder.updatedCurrentPartialDischarge(partialDischargeList.value[0])
 })
 </script>
 
 <template>
-	<h2 class="title text-overflow-one">
-		智能监测移动终端应用 —— {{ partialDischargeList[0]?.workName }} —— {{ partialDischargeList[0]?.detectMethodCn }}（{{ workOrder.checkprogress }}/{{ partialLength }}）
-	</h2>
+	<h2 class="title text-overflow-one">智能监测移动终端应用 —— {{ partialDischargeList[0]?.workName }}（{{ workOrder.checkprogress }}/{{ partialLength }}）</h2>
 	<word-search />
 	<div ref="containerOrder" class="container-order">
 		<virtual-list :list="partialDischargeList" width="450px" :height="height">

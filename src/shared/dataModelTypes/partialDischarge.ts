@@ -2,24 +2,12 @@ export type PointPartialDischarge = {
 	workName: string
 	workId: string
 	subWorkId: string
-	workDetailId: string
-	userId: string
-	detectPositionId: string
-	groupId: string
-	detectMethod: number
-	detectMethodCn: string
-	deviceType: string
-	deviceTypeName: string
-	voltageLevel: string
-	detectPositionName: string
-	orderNumber: number
-	deviceId: string
+	subWorkName: string
+	partId: string
+	partName: string
 	deviceName: string
-	dispatchNumber: number
-	blockName: string
-	routeType: number
-	status: number
-	reasonNotDetect: string
+	type: string
+	deviceType: string
 	files?: string[]
 	file?: string
 }
@@ -27,6 +15,6 @@ export type PointPartialDischarge = {
 export type PointPartialDischargeList = PointPartialDischarge[]
 
 export enum FilterOrder {
-	deviceType = 'deviceType',
+	deviceType = 'type',
 	voltageLevel = 'voltageLevel'
 }

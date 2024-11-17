@@ -19,6 +19,7 @@ const api: Api = {
 		maximize: () => ipcRenderer.invoke('process:maximize'),
 		desktopCapturer: () => ipcRenderer.invoke('process:desktopCapturer'),
 		screenshot: (params: ScreenData) => ipcRenderer.invoke('process:screenshot', params),
+		closeScreenshotWindow: () => ipcRenderer.invoke('process:closeScreenshotWindow'),
 		screenshotImage: (params: ScreenData) => ipcRenderer.invoke('process:screenshot-image', params),
 		uploadPartialDischargeListData: (params: string) => ipcRenderer.invoke('process:uploadPartialDischargeListData', params)
 	}

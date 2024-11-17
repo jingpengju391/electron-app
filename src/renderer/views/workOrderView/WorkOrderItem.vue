@@ -20,15 +20,15 @@ const getAssetsFile = (name: string | undefined): string => new URL(`../../asset
 </script>
 <template>
 	<div :class="{ paddingBottom: !isLast }" @click="handlerCurrentWorkOrder">
-		<div :class="{ container: true, active: item?.workDetailId === currentData?.workDetailId }">
+		<div :class="{ container: true, active: item?.partId === currentData?.partId }">
 			<image-view class="container-image" :src="getAssetsFile(item?.deviceType)" :err-src="getAssetsFile('default_pic')" />
 			<div class="container-right">
 				<aside>
-					<el-text class="title text-overflow-one">{{ item?.detectMethodCn }}</el-text>
+					<el-text class="title text-overflow-one">{{ item?.deviceName }}</el-text>
 					<el-text class="status text-overflow-one">{{ item?.files?.length ? '已完成' : '待上传' }}</el-text>
 				</aside>
 				<aside>
-					<el-text class="position text-overflow-one">{{ item?.detectPositionName }}</el-text>
+					<el-text class="position text-overflow-one">{{ item?.partName }}</el-text>
 					<el-text class="number text-overflow-one">( {{ item?.files?.length || 0 }} )</el-text>
 				</aside>
 			</div>

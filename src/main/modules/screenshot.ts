@@ -32,4 +32,6 @@ export async function closeScreenshotWindow() {
 	const mainWindow = getModelWindow(ModelWindowKey.mainWindow)
 	mainWindow?.focus()
 	shotWindow?.hide()
+	mainWindow?.setFullScreen(false)
+	mainWindow?.restore()
 }

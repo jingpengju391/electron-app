@@ -14,5 +14,22 @@ module.exports = {
 		'vue/require-default-prop': 'off',
 		'vue/multi-word-component-names': 'off',
 		indent: ['off', 'tab']
-	}
+	},
+	overrides: [
+		{
+			files: ['src/shared/**/*.ts', 'src/shared/**/*.d.ts'],
+			rules: {
+				'@typescript-eslint/no-explicit-any': 'off',
+				'@typescript-eslint/no-unused-vars': 'off',
+				'@typescript-eslint/ban-types': 'off',
+				'prefer-rest-params': 'off'
+			}
+		},
+		{
+			files: ['src/lib/httpClient/*.ts', 'src/renderer/utils/*.ts', 'src/util/*.ts'],
+			rules: {
+				'@typescript-eslint/no-explicit-any': 'off'
+			}
+		}
+	]
 }

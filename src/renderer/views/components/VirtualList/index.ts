@@ -2,22 +2,18 @@ import { h, defineComponent, PropType, watch, useTemplateRef } from 'vue'
 import { ClassNameVarType, JsonVirtualContainer } from './type'
 import { currentRender, initData, onScroll } from './scroll'
 
-type VirtualListProps<T> = {
-	list: T[]
-	width: string | number
-	height: string | number
-}
-
 export default defineComponent({
 	name: 'VirtualList',
 	props: {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		list: Array as PropType<any[]>,
+		list: {
+			type: Array as <T>() => T[],
+			default: () => [],
+			required: true
+		},
 		width: [String, Number] as PropType<string | number>,
 		height: [String, Number] as PropType<string | number>
 	},
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	setup(props: VirtualListProps<any>) {
+	setup(props) {
 		const containerOrderNode = useTemplateRef<HTMLDivElement | null>('scrollbarRef')
 
 		watch(

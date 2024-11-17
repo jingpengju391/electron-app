@@ -8,6 +8,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Inspect from 'vite-plugin-inspect'
+import terser from '@rollup/plugin-terser'
 import { resolvePath, dirPath } from './util'
 import alias from './alias'
 
@@ -73,7 +74,13 @@ export default {
 			dts: path.resolve(pathSrc, 'components.d.ts')
 		}),
 		Icons({ autoInstall: true }),
-		Inspect()
+		Inspect(),
+		terser({
+			compress: {
+				drop_console: true,
+				drop_debugger: true
+			}
+		})
 	],
 	server: {
 		port: parseInt(VITE_APP_SERVER_PORT),

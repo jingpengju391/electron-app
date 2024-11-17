@@ -54,7 +54,7 @@ app.on('window-all-closed', () => {
 async function registerAllInitWindows() {
 	await createWindow(loadingWindow())
 	await createWindow(mainWindow())
-	!isMac && await createWindow(shotWindow())
+	!isMac && (await createWindow(shotWindow()))
 }
 
 // all ipcs register in here when window is open

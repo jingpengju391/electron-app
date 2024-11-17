@@ -28,20 +28,31 @@ export const useWorkOrder = defineStore('workorder', {
 		filterPartialDischargeList(state): PointPartialDischargeList {
 			return state.partialDischargeList.filter((item) => {
 				return (
-					(!state.filterName || item.detectMethodCn.indexOf(state.filterName) >= 0) &&
-					(!state.filterType || item.deviceType === state.filterType) &&
-					(!state.filterLevel || item.voltageLevel === state.filterLevel) &&
+					(!state.filterName || item.deviceName.indexOf(state.filterName) >= 0) &&
+					(!state.filterType || item.type === state.filterType) &&
+					// (!state.filterLevel || item.voltageLevel === state.filterLevel) &&
 					((!state.filterStuts && state.filterStuts !== 0) || !!state.filterStuts === !!item.files?.length)
 				)
 			})
 		}
 	},
 	actions: {
+		resetState() {
+			this.$patch({
+				partialDischargeList: [],
+				currentPartialDischarge: undefined,
+				filterName: undefined,
+				filterType: undefined,
+				filterLevel: undefined,
+				filterStuts: undefined,
+				isConnectServer: false
+			})
+		},
 		updatedPartialDischargeList(partialDischargeList: PointPartialDischargeList): void {
 			this.$patch({ partialDischargeList })
 		},
 		updatedPartialDischargeListByCurrentPartialDischarge(currentPartialDischarge: PointPartialDischarge): void {
-			const findIndex = this.partialDischargeList.findIndex((item) => item.workDetailId === currentPartialDischarge?.workDetailId)
+			const findIndex = this.partialDischargeList.findIndex((item) => item.partId === currentPartialDischarge?.partId)
 			const partialDischargeList = this.partialDischargeList
 			partialDischargeList[findIndex] = currentPartialDischarge
 			this.$patch({ partialDischargeList })
@@ -62,11 +73,12 @@ export const useWorkOrder = defineStore('workorder', {
 		updatedFilterStatus(filterStuts: number | undefined): void {
 			this.$patch({ filterStuts })
 		},
-		updatedFilter(filter: { filterName: string | undefined; filterType: string | undefined; filterLevel: string | undefined; filterStuts: number | undefined }): void {
+		updatedFilter(filter: { filterName: string | undefined; filterType: string | undefined; filterStuts: number | undefined }): void {
 			this.$patch({ ...filter })
 		},
 		updatedIsConnectServer(isConnectServer: boolean): void {
 			this.$patch({ isConnectServer })
+			!isConnectServer && this.resetState()
 		}
 	}
 })

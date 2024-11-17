@@ -5,7 +5,6 @@ import { getScreenSize, isMac } from '../utils'
 import icon from '../../../resources/icon.png?asset'
 import initDefaultWorkspace from '../modules/initDataBeforeCreateWindow'
 import { getModelWindow } from '.'
-import { receivePartialDischargeListData } from '@server/partialDischarge/socketPartialDischarge'
 
 export function mainWindow(): WindowConfig {
 	const { width, height } = getScreenSize()
@@ -46,7 +45,6 @@ export function mainWindow(): WindowConfig {
 
 			focusedWindow.on('resize', () => {
 				focusedWindow.webContents.send('window-change-resize')
-				receivePartialDischargeListData([])
 			})
 		}
 	}

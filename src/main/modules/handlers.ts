@@ -5,7 +5,7 @@ import { getDesktopCapturer, showScreenshotWindow, closeScreenshotWindow } from 
 import { ModelWindowKey } from '@shared/dataModelTypes/windows'
 import { ScreenData } from '@shared/index'
 import { PointPartialDischarge } from '@shared/dataModelTypes/partialDischarge'
-import { uploadPartialDischargeListData } from '@server/partialDischarge/socketPartialDischarge'
+import { updatePartialDischargeListData } from '@server/partialDischarge/socketPartialDischarge'
 
 export function registerRenderMessageHandlers() {
 	ipcMain.handle('db:insert', insertToDB)
@@ -44,6 +44,9 @@ export function registerRenderProcessMessageHandlers() {
 		params.screenshotStatus ? showScreenshotWindow() : closeScreenshotWindow()
 		return params
 	})
+	ipcMain.handle('process:closeScreenshotWindow', () => {
+		closeScreenshotWindow()
+	})
 	ipcMain.handle('process:screenshot-image', async (_event, params: ScreenData) => {
 		const window = getModelWindow(ModelWindowKey.mainWindow)
 		window?.webContents.send('window-shot-param-params', params)
@@ -51,7 +54,7 @@ export function registerRenderProcessMessageHandlers() {
 	})
 	ipcMain.handle('process:uploadPartialDischargeListData', async (_event, params: string) => {
 		const partialDischarge = JSON.parse(params) as PointPartialDischarge
-		await uploadPartialDischargeListData(partialDischarge)
+		await updatePartialDischargeListData(partialDischarge)
 	})
 }
 
