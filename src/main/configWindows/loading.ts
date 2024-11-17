@@ -10,7 +10,8 @@ export function loadingWindow(): WindowConfig {
 			height: 200,
 			show: false,
 			frame: false,
-			transparent: true
+			transparent: true,
+			hasShadow: false
 		},
 		isOpenDevTools: false,
 		callback: async (focusedWindow) => {
